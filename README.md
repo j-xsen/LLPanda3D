@@ -40,5 +40,6 @@ snippet, and links to related classes.
 |---|---|---|
 | pgui | `panda/src/pgui` | Done (2026-08-22) — see [panda-src/pgui/README.md](panda-src/pgui/README.md) |
 | event | `panda/src/event` | Done (2026-08-22) — see [panda-src/event/README.md](panda-src/event/README.md) |
+| text | `panda/src/text` | Done (2026-08-22) — see [panda-src/text/README.md](panda-src/text/README.md) |
 
 Everything else under `panda/src/` is not yet documented.
