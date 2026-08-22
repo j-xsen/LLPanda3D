@@ -42,5 +42,6 @@ snippet, and links to related classes.
 | event | `panda/src/event` | Done (2026-08-22) — see [panda-src/event/README.md](panda-src/event/README.md) |
 | text | `panda/src/text` | Done (2026-08-22) — see [panda-src/text/README.md](panda-src/text/README.md) |
 | framework | `panda/src/framework` | Done (2026-08-22) — see [panda-src/framework/README.md](panda-src/framework/README.md) |
+| display | `panda/src/display` | Done (2026-08-22) — see [panda-src/display/README.md](panda-src/display/README.md) |
 
 Everything else under `panda/src/` is not yet documented.
