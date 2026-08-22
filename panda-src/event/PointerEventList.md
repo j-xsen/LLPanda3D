@@ -13,7 +13,7 @@ pattern matching) built on top of the trail. Like `ButtonEventList`, it's a
 
 - **`add_event()` computes the derived motion fields for you** — `_dx`, `_dy`,
   `_length`, `_direction`, `_rotation` are all calculated relative to the
-  *previous* event in the list at insertion time (zero/undefined for the very
+  *previous* event in the list at insertion time (zero/undefined for the
   first event). There are three overloads: from a raw `PointerData`, from
   explicit in-window/x/y, and from explicit in-window/x/y/dx/dy (the last one
   trusts the caller's delta instead of computing it from position).

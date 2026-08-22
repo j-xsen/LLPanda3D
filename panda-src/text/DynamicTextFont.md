@@ -7,7 +7,7 @@
 A `TextFont` that rasterizes glyphs from a standard font file (TTF, etc.) on
 demand, via FreeType, caching each rendered glyph into a
 [DynamicTextPage](DynamicTextPage.md) texture atlas. This is the font type
-used for essentially all real-world text rendering in Panda3D; `StaticTextFont`
+used for most real-world text rendering in Panda3D; `StaticTextFont`
 exists mainly as the no-FreeType fallback.
 
 ## Behavior notes

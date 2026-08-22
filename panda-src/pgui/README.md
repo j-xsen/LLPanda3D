@@ -94,8 +94,8 @@ destruction each side automatically detaches (see [PGItem.md](PGItem.md)
 "Notify interface").
 
 **Locking.** Every `PGItem` (and subclass) has an internal `LightReMutex _lock`
-that essentially every method acquires. The classes are therefore safe to
-touch from multiple threads doing independent scene-graph work, but this is an
+acquired by nearly every method. The classes are therefore safe to touch from
+multiple threads doing independent scene-graph work, but this is an
 implementation detail, not an invitation to fine-grained cross-thread
 choreography.
 

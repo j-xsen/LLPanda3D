@@ -13,7 +13,7 @@ the manager the application framework polls once per frame.
 - **Always has a `"default"` chain**, created in the constructor
   (`do_make_task_chain("default")`) — a fresh manager is immediately usable
   without any chain setup, single-threaded and synchronous.
-- **`add()` calls `upon_birth()` *before* the task is actually queued on its
+- **`add()` calls `upon_birth()` *before* the task is queued on its
   chain**, and releases the manager lock while doing so (so a task's
   `upon_birth()` override is free to touch the manager/other tasks without
   deadlocking). Chain lookup/creation and the actual enqueue happen after.
@@ -31,7 +31,7 @@ the manager the application framework polls once per frame.
   invalidate the iteration — and stops early (returns) the moment any chain
   reports `S_interrupted` (i.e. a task on it returned `DS_interrupt`), meaning
   chains *after* the interrupted one in the manager's list are skipped for
-  that call to `poll()`, and will simply get their turn on the next call.
+  that call to `poll()`, and will get their turn on the next call.
 - **`remove_task_chain(name)` blocks until that chain's tasks finish** — it
   loops calling `do_wait_for_tasks()` while the chain still has tasks, so
   removing a busy chain is a blocking operation, not instant.

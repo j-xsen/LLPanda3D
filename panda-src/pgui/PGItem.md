@@ -18,9 +18,10 @@ under a [PGTop](PGTop.md). See [README.md](README.md) for the shared concepts
   `has_frame()` false means no region is ever activated, so enter/exit/press
   events never fire, even if the node has visible geometry.
 - **`get_id()` drives every event name and defaults to the region's
-  auto-generated name** (`"pg" + sequence_number`), not the node's `get_name()`.
-  Call `set_id()` if you need predictable/human-readable event names; the
-  region name and thus every event name changes immediately.
+  auto-generated name** (see [PGMouseWatcherRegion](PGMouseWatcherRegion.md)),
+  not the node's `get_name()`. Call `set_id()` if you need
+  predictable/human-readable event names; the region name and thus every
+  event name changes immediately.
 - **Only one `PGItem` in the whole application can have keyboard focus at a
   time** (`_focus_item` is a static). Calling `set_focus(true)` on one item
   automatically calls `set_focus(false)` on whichever item had it.

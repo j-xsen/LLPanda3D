@@ -64,14 +64,10 @@ properties of a block of text are just the `TextNode` itself.
   loads. `set_default_font()` marks the flag loaded immediately, so setting
   an explicit default before any text is ever rendered skips the compiled-in
   fallback entirely.
-- **`operator==()` only compares fields that are `_specified` on `*this`**,
-  using `*this`'s specified-mask, not the union of both sides' masks (and
-  requires the masks match exactly first) — two `TextProperties` with
-  identical specified-masks and identical values for every bit set in that
-  mask compare equal even if... (in practice, since the mask must match
-  exactly, this reduces to "both specify the same fields with the same
-  values"). There's a duplicated redundant check for `F_has_text_color` in
-  the implementation (harmless, just checks the same condition twice).
+- **`operator==()` requires the specified-masks match exactly, then compares
+  only the specified fields.** Effectively: two `TextProperties` compare
+  equal iff they specify the same fields with the same values. (The
+  implementation checks `F_has_text_color` twice — redundant, harmless.)
 
 ## API
 

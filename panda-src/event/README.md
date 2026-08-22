@@ -84,8 +84,8 @@ to `PGItem`).
 
 **Queue and handler are separate, and both have a lazily-created global
 singleton.** `EventQueue::get_global_event_queue()` and
-`EventHandler::get_global_event_handler()` are what essentially all game code
-uses; `throw_event()` always queues onto the global queue, and
+`EventHandler::get_global_event_handler()` are what most game code uses;
+`throw_event()` always queues onto the global queue, and
 `EventHandler::process_events()` (called once per frame by the application
 framework) drains it and dispatches to whatever hooks are registered on the
 global handler. You can construct your own `EventQueue`/`EventHandler` pairs

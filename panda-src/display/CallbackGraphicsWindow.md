@@ -37,7 +37,7 @@ only via `GraphicsEngine::make_output()`.
   `EventsCallbackData::upcall()` calls `_window->GraphicsWindow::process_events()`.
   This lets a callback implementation do its own thing and *also* fall back
   to Panda's default handling for anything it doesn't want to special-case,
-  simply by calling `data->upcall()`.
+  by calling `data->upcall()`.
 - **`begin_frame()` always drives the GSG itself**, callback or not: after
   the render callback (if any) returns a true render flag, it unconditionally
   calls `_gsg->reset_if_new()`, `_gsg->set_current_properties(...)`, and
@@ -61,7 +61,7 @@ only via `GraphicsEngine::make_output()`.
   and returns `true`. The actual resize is expected to have already happened
   in the host application/toolkit.
 - **`create_input_device()` is the only public way to add an input device**
-  to a `CallbackGraphicsWindow** — it wraps the protected
+  to a `CallbackGraphicsWindow` — it wraps the protected
   `GraphicsWindow::add_input_device()` (see [GraphicsWindow.md](GraphicsWindow.md))
   around a fresh `GraphicsWindowInputDevice::pointer_and_keyboard()`. The
   callback code is expected to feed events into the returned device via

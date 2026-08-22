@@ -7,8 +7,8 @@ handler, task manager, window list, default keybindings) and
 window: scene graph roots, camera, trackball, mouse/keyboard wiring, model
 loading, anim-control UI). Neither class does anything a hand-rolled app
 couldn't do directly with `GraphicsEngine`/`NodePath`/`EventHandler` — this
-module exists purely to save boilerplate for throwaway/demo programs. Most
-Panda3D C++ applications embed this pattern almost verbatim.
+module exists to save boilerplate, and most Panda3D C++ applications embed
+this pattern almost verbatim.
 
 ## Class hierarchy
 

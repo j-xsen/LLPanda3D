@@ -145,7 +145,7 @@ never actually written to bam files.
 - **Side-by-side sizing (`get_sbs_left_size()`/`get_sbs_right_size()` and
   the x/y variants) derive from `get_size()` scaled by the configured
   `sbs_left_dimensions`/`sbs_right_dimensions` fractional rectangles** —
-  when side-by-side stereo isn't enabled these simply equal `get_size()`.
+  when side-by-side stereo isn't enabled these equal `get_size()`.
 - **`is_active()` has several independent ways to be true beyond the
   obvious active flag**: a one-shot output is active only during its
   designated frame (`_one_shot_frame` matches the current global frame

@@ -21,11 +21,10 @@ public:
 };
 ```
 
-**Note on inheritance order:** `TypedWritableReferenceCount` is listed first
-even though `MouseWatcherParameter` is conceptually primary — the header
-comments this is required because MSVC++ places the *first* listed base at the
-front of the object layout, and `interrogate` (Panda's C++→Python binding
-generator) assumes the same, so the order is load-bearing, not stylistic.
+**Inheritance order is load-bearing:** `TypedWritableReferenceCount` is listed
+first even though `MouseWatcherParameter` is conceptually primary — MSVC++
+places the *first* listed base at the front of the object layout, and
+`interrogate` (Panda's C++→Python binding generator) assumes the same.
 
 In an event handler, retrieve it from an `Event` the normal Panda way (cast
 the `EventParameter`'s pointer back to `PGMouseWatcherParameter`) to read

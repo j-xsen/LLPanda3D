@@ -20,8 +20,7 @@ duration can change during playback since it's driven by each sub-task's own
 - **A sub-task's own `upon_birth()`/`upon_death()` fire as it's entered/left**
   — `set_current_task()` calls them itself (not through the normal
   manager/chain add/remove path), so a sub-task's `done_event`/notify
-  callbacks still work correctly even though it's never actually enqueued on
-  a chain.
+  callbacks still work correctly even though it's never enqueued on a chain.
 - **`DS_again`/`DS_pause` from a sub-task become the *sequence's* delay** — if
   a sub-task returns one of these, the sequence copies that sub-task's
   `_delay`/`_has_delay` onto itself and also returns `DS_again`, effectively

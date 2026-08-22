@@ -20,14 +20,13 @@ into a [PointerEventList](PointerEventList.md).
   (down-positive) is negated to get a conventional math-style angle.
 - **`_type`** (a `PointerType`, from `pointerData.h`) distinguishes mouse vs.
   stylus vs. touch etc., for platforms that report it; not always meaningful.
-- **`write_datagram()`/`read_datagram()` are unimplemented** — both simply
-  call `nassert_raise("This function not implemented yet.")`. Don't rely on
-  `PointerEvent` Bam serialization; `PointerEventList` as a whole is not
-  registered with the Bam read factory either (unlike `ButtonEventList`).
-- **Equality (`==`) ignores `_id`, `_type`, `_pressure`, `_time`, `_sequence`-independent
-  fields are actually compared** — specifically compares `_in_window`, `_xpos`,
-  `_ypos`, `_dx`, `_dy`, `_sequence`, `_length`, `_direction`, `_rotation`; not
-  `_time`, `_id`, `_type`, or `_pressure`.
+- **`write_datagram()`/`read_datagram()` are unimplemented** — both call
+  `nassert_raise("This function not implemented yet.")`. Don't rely on
+  `PointerEvent` Bam serialization; `PointerEventList` isn't registered with
+  the Bam read factory either (unlike `ButtonEventList`).
+- **Equality (`==`) compares position/motion fields only** — `_in_window`,
+  `_xpos`, `_ypos`, `_dx`, `_dy`, `_sequence`, `_length`, `_direction`,
+  `_rotation`; it ignores `_time`, `_id`, `_type`, and `_pressure`.
 
 ## API
 

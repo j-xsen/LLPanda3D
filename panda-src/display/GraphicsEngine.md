@@ -39,7 +39,7 @@ exactly one of these — see [../framework/PandaFramework.md](../framework/Panda
   `make_output()` calls `open_windows()` once to try to bring it up; if it's
   still not valid afterward, the `gsg`/`host` argument is discarded (set to
   `nullptr`) and a fresh one gets created instead — silent, not an error.
-- **`make_buffer()` has two overloads with very different sharing behavior**
+- **`make_buffer()` has two overloads with different sharing behavior**
   (documented in `.I`, easy to miss from the header alone): the
   `GraphicsOutput*` (host window) overload adapts to the host's existing
   framebuffer properties and is the "preferred" way to make an offscreen

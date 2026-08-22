@@ -13,10 +13,8 @@ class PGMouseWatcherBackground : public MouseWatcherRegion {
 PUBLISHED:
   PGMouseWatcherBackground();   // set_active(false), set_keyboard(true)
 public:
-  // press/release/keystroke/candidate each simply call the corresponding
-  // PGItem::background_* static dispatcher, which fans the event out to
-  // every item currently registered with background focus (skipping any
-  // that also currently have normal focus, to avoid double-delivery).
+  // press/release/keystroke/candidate each call the corresponding
+  // PGItem::background_* static dispatcher (see PGItem.md).
 };
 ```
 

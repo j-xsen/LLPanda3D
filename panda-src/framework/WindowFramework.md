@@ -13,7 +13,7 @@ instances.
 
 ## Behavior notes
 
-- **Two constructors, two very different jobs.** The "new window" ctor
+- **Two constructors, two different jobs.** The "new window" ctor
   (`WindowFramework(PandaFramework*)`) just zeroes flags; the actual
   `GraphicsOutput`/camera/display-region setup happens in the separate
   `open_window()` method, called by `PandaFramework::open_window()`. The
@@ -34,17 +34,14 @@ instances.
   rescale-normal/smooth-shading attribs** the first time it's called —
   every `WindowFramework`'s 3-d scene starts from these defaults, not
   Panda's global defaults.
-- **`get_render_2d()`'s orthographic camera has a fixed film size** of
-  `(-1,1)` in both axes regardless of window shape — it's `aspect_2d`
-  (a child `PGTop`) that applies the aspect-ratio correction, not
-  `render_2d` itself. `render_2d`'s `DisplayRegion` is created with
-  `set_sort(10)` so it draws after the (unsorted, effectively lower-sorted)
-  3-d region.
-- **`get_aspect_2d()` wires up PGUI mouse support as a side effect** — it
-  calls `get_mouse()` and, if that node is a `MouseWatcher`, hands it to the
-  new `PGTop` via `set_mouse_watcher()`. If you never call `get_aspect_2d()`
-  (or `get_pixel_2d()`, which doesn't do this), PGUI widgets parented
-  directly under `render_2d` won't receive mouse events.
+- **`get_render_2d()`'s ortho camera uses a fixed `(-1,1)` film size** in
+  both axes regardless of window shape (see [README's 2-d node
+  hierarchy](README.md#shared-concepts) for how `aspect_2d`/`pixel_2d`
+  correct for that). `get_aspect_2d()` additionally wires PGUI mouse
+  support as a side effect: it calls `get_mouse()` and, if that node is a
+  `MouseWatcher`, hands it to the new `PGTop` via `set_mouse_watcher()`
+  (`get_pixel_2d()` does not) — skip `get_aspect_2d()` and PGUI widgets
+  parented under `render_2d` receive no mouse events.
 - **`get_mouse()` conditionally constrains itself to a `DisplayRegion`** —
   only when `_window->get_side_by_side_stereo()` is true does the
   `MouseWatcher` get `set_display_region()` called with the window's overlay
@@ -86,9 +83,9 @@ instances.
 - **`create_anim_controls()` always calls `destroy_anim_controls()` first**
   — safe to call repeatedly; it's how `next_anim_control()` rebuilds the UI
   for each new anim. The controls UI itself is built with `PGItem`/`PGButton`
-  /`PGSliderBar` under `aspect_2d`, using `MouseWatcherRegion::SF_mouse_button`
-  suppress flags on the sliders/buttons so clicks on them don't also fall
-  through to the 3-d scene. `destroy_anim_controls()` removes **all** event
+  /`PGSliderBar` under `aspect_2d`; sliders/buttons carry
+  `MouseWatcherRegion::SF_mouse_button` suppress flags so clicks on them
+  don't also fall through to the 3-d scene. `destroy_anim_controls()` removes **all** event
   hooks tagged with `(void*)this` (`remove_hooks_with`), which drops the
   jog-shuttle button hooks registered in `setup_shuttle_button()`.
 - **`update_anim_controls()` is a live per-frame task**
@@ -144,7 +141,7 @@ instances.
 | Signature | Notes |
 |---|---|
 | `INLINE PandaFramework *get_panda_framework() const` | |
-| `INLINE GraphicsWindow *get_graphics_window() const` | `nullptr` if the output isn't actually a `GraphicsWindow` (e.g. an offscreen buffer). |
+| `INLINE GraphicsWindow *get_graphics_window() const` | `nullptr` if the output isn't a `GraphicsWindow` (e.g. an offscreen buffer). |
 | `INLINE GraphicsOutput *get_graphics_output() const` | |
 | `NodePath get_camera_group()` | Lazily created under `get_render()`. |
 | `INLINE int get_num_cameras() const` / `INLINE Camera *get_camera(int n) const` | |

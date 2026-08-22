@@ -32,7 +32,7 @@ programs and samples.
   `_default_pipe`. Only returns `nullptr` if every pipe type fails.
 - **`get_graphics_engine()` lazily creates the `"igloop"` render task** the
   first time it's called (in the `.I` file, not obviously from the header
-  alone) — so simply calling `get_graphics_engine()` before `open_window()`
+  alone) — so calling `get_graphics_engine()` before `open_window()`
   has a side effect of scheduling per-frame rendering.
 - **Static `_loader_options`** (`PandaFramework::_loader_options`) is a
   process-wide `LoaderOptions` shared by every `WindowFramework::load_model()`
@@ -49,10 +49,10 @@ programs and samples.
   button) does the identical cascade-and-maybe-exit logic independently.
 - **`define_key()` replaces same-named hooks.** Calling it again with an
   `event_name` already registered removes the old `_key_definitions` entry
-  (used to build the `?`-key help text) before adding the new hook — but
-  note it only replaces the *description* bookkeeping; `EventHandler::add_hook`
-  itself allows multiple hooks per event name, so if `function`/`data` differ
-  both old and new hook still fire unless the old one is separately removed.
+  (used to build the `?`-key help text) before adding the new hook — but it
+  only replaces the *description* bookkeeping; `EventHandler::add_hook`
+  allows multiple hooks per event name, so if `function`/`data` differ, both
+  old and new hook still fire unless the old one is separately removed.
 - **`do_frame()` just polls the task manager** — `_task_mgr.poll()` — and
   returns `!_exit_flag`. `main_loop()` is a bare `while (do_frame(...)) {}`.
   All real per-frame work (data graph traversal, event dispatch, rendering,

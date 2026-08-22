@@ -86,15 +86,12 @@ structural tokens:
 fields it has explicitly set, layered on top of whatever was already active
 (see [TextProperties.md](TextProperties.md)).
 
-**`TextNode` rebuilds lazily, on a dirty flag, guarded by a mutex.**
-Setter calls (`set_text_color()`, `set_wordwrap()`, ...) just flip
-`F_needs_rebuild`/`F_needs_measure` bits and return immediately; the actual
-`TextAssembler` run happens the next time something needs the result
-(`do_get_internal_geom()`, which is called from `cull_callback()`, or an
-explicit `update()`/`force_update()`). `check_measure()` alone can trigger a
-full rebuild too — the module doesn't distinguish a cheap remeasure from a
-full assemble (`do_measure()` literally just calls `do_rebuild()`). See
-[TextNode.md](TextNode.md).
+**`TextNode` rebuilds lazily, on a dirty flag, guarded by a mutex.** Setter
+calls (`set_text_color()`, `set_wordwrap()`, ...) just flip dirty bits and
+return immediately; the actual `TextAssembler` run is deferred to the next
+cull pass or an explicit `update()`/`force_update()`. See
+[TextNode.md](TextNode.md) for the flag mechanics, including the
+`do_measure() == do_rebuild()` quirk (no cheap remeasure-only path exists).
 
 **Two different glyph representations: quads and arbitrary Geoms.** A glyph
 that boils down to one textured rectangle (`TextGlyph::has_quad()`) can be

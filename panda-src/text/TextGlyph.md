@@ -19,10 +19,10 @@ plain `TextGlyph`s directly; `DynamicTextFont` constructs the
   any `StaticTextFont` glyph whose source geometry isn't a clean quad).
   Setting one clears the other.
 - **`get_geom()` always returns a fresh copy, wrapped as a
-  [GeomTextGlyph](GeomTextGlyph.md).** This is deliberate: `DynamicTextFont`
-  relies on `Geom`-held references to a `TextGlyph` (via `GeomTextGlyph`) to
-  know via `get_ref_count()` whether a glyph is still in use anywhere, so it
-  can be garbage-collected from its texture page. If a quad glyph has no
+  [GeomTextGlyph](GeomTextGlyph.md)** — needed for ref-count-based garbage
+  collection to work across `Geom` copies/merges (see
+  [README.md's core concepts](README.md#core-concepts) and
+  [GeomTextGlyph.md](GeomTextGlyph.md) for why). If a quad glyph has no
   cached `_geom` yet, `get_geom()` synthesizes one from `_quad_dimensions`/
   `_quad_texcoords` on first call (`make_quad_geom()`) and caches it.
 - **`check_quad_geom()` auto-detects whether an arbitrary loaded `Geom` is

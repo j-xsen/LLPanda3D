@@ -15,8 +15,8 @@ what backs [AsyncTaskSequence](AsyncTaskSequence.md)'s sub-task list.
   (`PointerToArray`), which is itself refcounted and shareable; `add_task()`,
   `remove_task()`, and `remove_task(index)` all check `_tasks.get_ref_count() > 1`
   first and clone the array before mutating if it's shared, so copying an
-  `AsyncTaskCollection` is cheap (shares storage) until you actually mutate
-  one of the copies.
+  `AsyncTaskCollection` is cheap (shares storage) until you mutate one of the
+  copies.
 - **Duplicates are allowed by default** — `add_tasks_from()` appends without
   checking for existing entries; call `remove_duplicate_tasks()` explicitly if
   you need uniqueness (keeps the *first* occurrence of each task, removes

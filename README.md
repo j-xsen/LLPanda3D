@@ -1,10 +1,9 @@
 # llpanda — Panda3D C++ API reference for Claude
 
 A git-tracked, incrementally-built reference to the Panda3D 1.10.16 C++ engine
-source (`../panda/src/`), written so a Claude session can understand a given
-subsystem's classes, methods, and usage **without re-reading the raw engine
-source**. Official Panda3D docs are Python-focused; this covers the C++ API
-surface specifically.
+source (`../panda/src/`), written so a Claude session can understand a
+subsystem **without re-reading the raw engine source**. Official Panda3D
+docs are Python-focused; this covers the C++ API.
 
 ## How this is organized
 
@@ -22,17 +21,12 @@ snippet, and links to related classes.
 
 ## How to use this as a Claude session
 
-1. Check the status table below for which modules are documented.
-2. Read that module's `README.md` first for the shared vocabulary/concepts,
-   then the specific class doc(s) you need.
-3. If something looks like it may have changed since a doc was written (a
-   named method/field doesn't match what you find in the real source), trust
-   the source — `panda/src/<module>/` — and treat the doc as stale; consider
-   updating it.
-4. If a module isn't listed yet, it hasn't been documented — read the source
-   directly for that one, and consider adding a `panda-src/<module>/` section
-   following the pgui format if the work is substantial enough to be worth
-   preserving.
+1. Check the status table below for documented modules.
+2. Read the module's `README.md` first, then the specific class doc(s).
+3. Doc vs. source mismatch: trust the source (`panda/src/<module>/`); treat
+   the doc as stale and consider updating it.
+4. Module not listed: read the source directly; consider adding a
+   `panda-src/<module>/` section (pgui format) if it's worth preserving.
 
 ## Status
 

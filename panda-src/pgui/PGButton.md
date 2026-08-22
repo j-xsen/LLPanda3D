@@ -88,7 +88,7 @@ Also overrides `set_active(bool)` from `PGItem` (see Behavior notes).
 | `click-<button>-<id>` | Button pressed and released normally over the button (see rules above) |
 
 Plus all base [PGItem events](PGItem.md#events) (`enter-`, `exit-`, `press-`,
-`release-`, etc.) still fire — `click-` is additional, not a replacement.
+`release-`, etc.) — `click-` is additional, not a replacement.
 
 ## Usage
 

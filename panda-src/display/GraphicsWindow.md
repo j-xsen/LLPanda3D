@@ -31,7 +31,7 @@ platform subclass.
   `properties.has_open()` and it differs from the current open state, *all*
   of `properties` is applied at once via `open_window()`/`close_window()`
   and the method returns early — size/origin/fullscreen/mouse-mode changes
-  bundled into the same request are simply carried along inside
+  bundled into the same request are carried along inside
   `_properties` rather than negotiated individually. Only when the window is
   already open (and staying open) does the method negotiate size/origin via
   `do_reshape_request()` and clear only the sub-properties that were

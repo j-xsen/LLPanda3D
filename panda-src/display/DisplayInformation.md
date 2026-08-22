@@ -16,7 +16,7 @@ to constrain a display-mode search (e.g.
 ## Behavior notes
 
 - **All data members are `public`, not `private`** — unusually for a Panda3D
-  class, `DisplayInformation` is essentially a plain struct with a
+  class, `DisplayInformation` is a plain struct with a
   `PUBLISHED` accessor layer bolted on for the scripting interface; C++
   code populating or reading it (typically a platform-specific
   `GraphicsPipe` subclass) commonly touches the `_foo` fields directly
@@ -26,7 +26,7 @@ to constrain a display-mode search (e.g.
   queries) — the default constructor zeroes or `-1`-fills every field, sets
   `_state` to `DS_unknown`, and `_shader_model` to `SM_00`. A
   `GraphicsPipe` that doesn't implement hardware detection for its platform
-  simply never overwrites most of these, so most getters read as
+  never overwrites most of these, so most getters read as
   `0`/`-1`/`DS_unknown` outside of that DirectX/Windows path. Always check
   `get_display_state()` for `DS_success` before trusting the rest of the
   structure.

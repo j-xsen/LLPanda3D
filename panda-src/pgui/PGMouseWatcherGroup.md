@@ -4,10 +4,9 @@
 **Inherits:** `MouseWatcherGroup`
 
 Internal plumbing — the `MouseWatcherGroup` each [PGTop](PGTop.md) owns.
-Recreated fresh every frame by `PGTop::cull_callback()` (the old group is
-swapped out of the `MouseWatcher` and the new one, populated during that
-frame's traversal, swapped in). Exists as its own tiny subclass — rather than
-`PGTop` directly inheriting `MouseWatcherGroup` — specifically to avoid a
+Recreated fresh every frame by `PGTop::cull_callback()` — see
+[PGTop.md](PGTop.md) for why. Exists as its own tiny subclass — rather than
+`PGTop` directly inheriting `MouseWatcherGroup` — to avoid a
 circular-reference-count problem between `NamedNode` and `MouseWatcherGroup`
 (per the header comment).
 
