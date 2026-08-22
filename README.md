@@ -39,5 +39,6 @@ snippet, and links to related classes.
 | Module | `panda/src/` path | Status |
 |---|---|---|
 | pgui | `panda/src/pgui` | Done (2026-08-22) — see [panda-src/pgui/README.md](panda-src/pgui/README.md) |
+| event | `panda/src/event` | Done (2026-08-22) — see [panda-src/event/README.md](panda-src/event/README.md) |
 
 Everything else under `panda/src/` is not yet documented.
