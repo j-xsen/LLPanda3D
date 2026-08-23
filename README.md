@@ -60,5 +60,7 @@ snippet, and links to related classes.
 | pgraph | `panda/src/pgraph` | Done (2026-08-23) — see [panda-src/pgraph/README.md](panda-src/pgraph/README.md) |
 | gobj | `panda/src/gobj` | Done (2026-08-23) — see [panda-src/gobj/README.md](panda-src/gobj/README.md) |
 | pgraphnodes | `panda/src/pgraphnodes` | Done (2026-08-23) — see [panda-src/pgraphnodes/README.md](panda-src/pgraphnodes/README.md) |
+| audio | `panda/src/audio` | Done (2026-08-23) — see [panda-src/audio/README.md](panda-src/audio/README.md) |
+| collide | `panda/src/collide` | Done (2026-08-23) — see [panda-src/collide/README.md](panda-src/collide/README.md) |
 
 Everything else under `panda/src/` is not yet documented.
