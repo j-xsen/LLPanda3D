@@ -59,5 +59,6 @@ snippet, and links to related classes.
 | display | `panda/src/display` | Done (2026-08-22) — see [panda-src/display/README.md](panda-src/display/README.md) |
 | pgraph | `panda/src/pgraph` | Done (2026-08-23) — see [panda-src/pgraph/README.md](panda-src/pgraph/README.md) |
 | gobj | `panda/src/gobj` | Done (2026-08-23) — see [panda-src/gobj/README.md](panda-src/gobj/README.md) |
+| pgraphnodes | `panda/src/pgraphnodes` | Done (2026-08-23) — see [panda-src/pgraphnodes/README.md](panda-src/pgraphnodes/README.md) |
 
 Everything else under `panda/src/` is not yet documented.
