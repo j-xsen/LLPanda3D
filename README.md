@@ -1,9 +1,27 @@
-# llpanda — Panda3D C++ API reference for Claude
+# LLPanda3D — Panda3D C++ API reference for Claude
 
 A git-tracked, incrementally-built reference to the Panda3D 1.10.16 C++ engine
-source (`../panda/src/`), written so a Claude session can understand a
+source (`panda/src/`), written so a Claude session can understand a
 subsystem **without re-reading the raw engine source**. Official Panda3D
 docs are Python-focused; this covers the C++ API.
+
+## Setup
+
+Clone this repo — that's it, no Panda3D source needed:
+
+```
+git clone https://github.com/j-xsen/LLPanda3D.git
+```
+
+Then tell your Claude session to read `LLPanda3D/README.md` first (or point
+a `CLAUDE.md` at it). The docs are self-contained; source paths are noted
+for reference only.
+
+**If you also have the Panda3D 1.10.16 source** (not just the standard
+distributable), cloning `LLPanda3D/` as a sibling of `panda/` unlocks one extra
+step: Claude can cross-check a doc against the real source when something
+looks off (see step 3 below). Without the source, skip that step — the docs
+still work, Claude just can't verify them against ground truth.
 
 ## How this is organized
 
@@ -23,10 +41,12 @@ snippet, and links to related classes.
 
 1. Check the status table below for documented modules.
 2. Read the module's `README.md` first, then the specific class doc(s).
-3. Doc vs. source mismatch: trust the source (`panda/src/<module>/`); treat
-   the doc as stale and consider updating it.
-4. Module not listed: read the source directly; consider adding a
-   `panda-src/<module>/` section (pgui format) if it's worth preserving.
+3. *(Only if you have the Panda3D source locally.)* Doc vs. source mismatch:
+   trust the source (`panda/src/<module>/`); treat the doc as stale and
+   consider updating it.
+4. Module not listed: read the source directly if you have it; consider
+   adding a `panda-src/<module>/` section (pgui format) if it's worth
+   preserving.
 
 ## Status
 
