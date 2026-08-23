@@ -58,5 +58,6 @@ snippet, and links to related classes.
 | framework | `panda/src/framework` | Done (2026-08-22) — see [panda-src/framework/README.md](panda-src/framework/README.md) |
 | display | `panda/src/display` | Done (2026-08-22) — see [panda-src/display/README.md](panda-src/display/README.md) |
 | pgraph | `panda/src/pgraph` | Done (2026-08-23) — see [panda-src/pgraph/README.md](panda-src/pgraph/README.md) |
+| gobj | `panda/src/gobj` | Done (2026-08-23) — see [panda-src/gobj/README.md](panda-src/gobj/README.md) |
 
 Everything else under `panda/src/` is not yet documented.
