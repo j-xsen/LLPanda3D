@@ -41,6 +41,7 @@ inherited unchanged from [PointLight](PointLight.md).
 ## Usage
 
 ```cpp
+NodePath render = window->get_render();  // WindowFramework* window
 PT(SphereLight) slight = new SphereLight("bulb");
 slight->set_color(LColor(1, 1, 1, 1));
 slight->set_radius(0.5f);

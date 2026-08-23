@@ -80,6 +80,7 @@ Deprecated: `enum Operation {O_set, O_add, O_remove}`, `make(op, light1[, light2
 ## Usage
 
 ```cpp
+NodePath render("render");
 NodePath light_np = render.attach_new_node(new DirectionalLight("sun"));
 node_path.set_light(light_np);          // NodePath::set_light() wraps add_on_light()
 node_path.set_light_off(other_light_np); // wraps add_off_light()

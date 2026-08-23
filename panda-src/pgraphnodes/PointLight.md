@@ -61,6 +61,7 @@ Shadow/frustum API inherited from [LightLensNode](LightLensNode.md)
 ## Usage
 
 ```cpp
+NodePath render = window->get_render();  // WindowFramework* window
 PT(PointLight) plight = new PointLight("bulb");
 plight->set_color(LColor(1, 1, 1, 1));
 plight->set_attenuation(LVecBase3(1, 0, 0.02f));

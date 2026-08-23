@@ -63,6 +63,7 @@ computed entirely on the CPU during culling by adjusting a
 ## Usage
 
 ```cpp
+NodePath render("render");
 NodePath torch_light = render.attach_new_node(new PolylightNode("torch"));
 DCAST(PolylightNode, torch_light.node())->set_radius(10.0);
 

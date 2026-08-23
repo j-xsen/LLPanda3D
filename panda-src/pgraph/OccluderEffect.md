@@ -50,6 +50,7 @@ instead of a `RenderAttrib`.
 ## Usage
 
 ```cpp
+NodePath render("render");
 NodePath occluder_np = render.attach_new_node(new OccluderNode("occ"));
 // ... build occluder polygon on occluder_np ...
 

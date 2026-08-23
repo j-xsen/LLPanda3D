@@ -97,8 +97,9 @@ PT(PGButton) btn = new PGButton("ok");
 btn->setup("OK");
 top_np.attach_new_node(btn);
 
-// React via event:
-accept(btn->get_click_event(MouseButton::one()), [](const Event *) { ... });
+// React via event (captureless lambda decays to EventFunction*):
+EventHandler::get_global_event_handler()->add_hook(
+  btn->get_click_event(MouseButton::one()), [](const Event *) { ... });
 
 // Or via Notify:
 class MyPanel : public PGButtonNotify {

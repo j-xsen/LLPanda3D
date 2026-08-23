@@ -63,6 +63,7 @@ Cone shape/FOV comes entirely from the inherited `Lens` (see
 ## Usage
 
 ```cpp
+NodePath render = window->get_render();  // WindowFramework* window
 PT(Spotlight) slight = new Spotlight("flashlight");
 slight->set_color(LColor(1, 1, 1, 1));
 slight->get_lens()->set_fov(30);

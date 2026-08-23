@@ -151,6 +151,7 @@ set_draw_order/set_tab_width/set_glyph_scale/set_glyph_shift` (+ their
 ## Usage
 
 ```cpp
+NodePath aspect2d = window->get_aspect_2d();  // WindowFramework* window
 PT(TextNode) text = new TextNode("my_text");
 text->set_text("Hello, World!");
 text->set_align(TextNode::A_center);

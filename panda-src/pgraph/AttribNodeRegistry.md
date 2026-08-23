@@ -42,6 +42,7 @@ own independent copy.
 ## Usage
 
 ```cpp
+NodePath render("render");
 NodePath sun = render.attach_new_node(new DirectionalLight("sun"));
 AttribNodeRegistry::get_global_ptr()->add_node(sun);
 // Any later-loaded .bam referencing a DirectionalLight named "sun"

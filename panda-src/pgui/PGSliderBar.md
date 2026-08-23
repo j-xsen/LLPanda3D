@@ -125,9 +125,12 @@ slider->set_range(0.0f, 1.0f);
 slider->set_value(0.5f);
 top_np.attach_new_node(slider);
 
-accept(slider->get_adjust_event(), [slider](const Event *) {
-  float v = slider->get_value();
-});
+EventHandler::get_global_event_handler()->add_hook(
+  slider->get_adjust_event(),
+  [](const Event *, void *data) {
+    PGSliderBar *slider = (PGSliderBar *)data;
+    float v = slider->get_value();
+  }, slider);
 ```
 
 ## See also

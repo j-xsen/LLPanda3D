@@ -73,6 +73,7 @@ say what to draw into that region of a window.
 ```cpp
 NodePath camera_np = window->get_camera_group();
 // or, when building manually:
+NodePath render("render");
 PT(Camera) camera = new Camera("cam");
 camera->set_lens(new PerspectiveLens());
 NodePath cam_np = render.attach_new_node(camera);

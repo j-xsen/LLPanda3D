@@ -45,6 +45,7 @@ a dedicated width/height member.
 ## Usage
 
 ```cpp
+NodePath render = window->get_render();  // WindowFramework* window
 PT(RectangleLight) rlight = new RectangleLight("panel");
 rlight->set_color(LColor(1, 1, 1, 1));
 NodePath rlnp = render.attach_new_node(rlight);

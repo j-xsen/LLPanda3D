@@ -37,6 +37,7 @@ correct even under a scaled `NodePath`.
 ## Usage
 
 ```cpp
+NodePath render("render");
 render.set_attrib(RescaleNormalAttrib::make(RescaleNormalAttrib::M_auto));
 ```
 

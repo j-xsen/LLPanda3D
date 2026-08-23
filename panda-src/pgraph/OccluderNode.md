@@ -28,6 +28,7 @@ Holds a single rectangular occluder polygon (4 vertices, counterclockwise facing
 ## Usage
 
 ```cpp
+NodePath render("render");
 PT(OccluderNode) occluder = new OccluderNode("wall");
 occluder->set_vertices(LPoint3(-5,0,-3), LPoint3(5,0,-3),
                         LPoint3(5,0,3), LPoint3(-5,0,3));

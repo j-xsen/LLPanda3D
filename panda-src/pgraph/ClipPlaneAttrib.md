@@ -67,6 +67,7 @@ adding others.
 
 ## Usage
 ```cpp
+NodePath render("render");
 NodePath plane_np = render.attach_new_node(new PlaneNode("clip", LPlane(0, 0, 1, 0)));
 node_path.set_attrib(DCAST(ClipPlaneAttrib, ClipPlaneAttrib::make())->add_on_plane(plane_np));
 ```

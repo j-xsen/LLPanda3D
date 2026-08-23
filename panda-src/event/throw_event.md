@@ -33,14 +33,14 @@ void throw_event(const CPT_Event &event);
 void throw_event(const std::string &event_name);
 void throw_event(const std::string &event_name, const EventParameter &p1);
 void throw_event(const std::string &event_name, const EventParameter &p1, const EventParameter &p2);
-void throw_event(const std::string &event_name, const EventParameter &p1, p2, p3);
-void throw_event(const std::string &event_name, const EventParameter &p1, p2, p3, p4);
+void throw_event(const std::string &event_name, const EventParameter &p1, const EventParameter &p2, const EventParameter &p3);
+void throw_event(const std::string &event_name, const EventParameter &p1, const EventParameter &p2, const EventParameter &p3, const EventParameter &p4);
 
 void throw_event_directly(EventHandler &handler, const CPT_Event &event);
 void throw_event_directly(EventHandler &handler, const std::string &event_name);
 void throw_event_directly(EventHandler &handler, const std::string &event_name, const EventParameter &p1);
-void throw_event_directly(EventHandler &handler, const std::string &event_name, p1, p2);
-void throw_event_directly(EventHandler &handler, const std::string &event_name, p1, p2, p3);
+void throw_event_directly(EventHandler &handler, const std::string &event_name, const EventParameter &p1, const EventParameter &p2);
+void throw_event_directly(EventHandler &handler, const std::string &event_name, const EventParameter &p1, const EventParameter &p2, const EventParameter &p3);
 ```
 
 ## Usage

@@ -146,9 +146,12 @@ entry->setup(10.0f, 1);              // width in text-units, 1 line
 entry->set_max_chars(32);
 top_np.attach_new_node(entry);
 
-accept(entry->get_accept_event(KeyboardButton::enter()), [](const Event *) {
-  // read entry->get_text()
-});
+EventHandler::get_global_event_handler()->add_hook(
+  entry->get_accept_event(KeyboardButton::enter()),
+  [](const Event *, void *data) {
+    PGEntry *entry = (PGEntry *)data;
+    // read entry->get_text()
+  }, entry);
 ```
 
 ## See also

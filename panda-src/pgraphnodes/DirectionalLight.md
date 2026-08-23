@@ -47,6 +47,7 @@ Shadow/frustum API inherited from [LightLensNode](LightLensNode.md).
 ## Usage
 
 ```cpp
+NodePath render = window->get_render();  // WindowFramework* window
 PT(DirectionalLight) dlight = new DirectionalLight("sun");
 dlight->set_color(LColor(1, 1, 0.9f, 1));
 dlight->set_direction(LVector3(-1, -1, -2));

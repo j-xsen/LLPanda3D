@@ -54,7 +54,7 @@ enum Type { T_down, T_resume_down, T_up, T_repeat, T_keystroke,
 | `ButtonEvent()` | `T_down`, `ButtonHandle::none()` |
 | `ButtonEvent(ButtonHandle button, Type type, double time = now)` | For down/resume_down/up/repeat/raw_down/raw_up |
 | `ButtonEvent(int keycode, double time = now)` | `T_keystroke` |
-| `ButtonEvent(const std::wstring &candidate_string, size_t highlight_start, highlight_end, cursor_pos)` | `T_candidate` |
+| `ButtonEvent(const std::wstring &candidate_string, size_t highlight_start, size_t highlight_end, size_t cursor_pos)` | `T_candidate` |
 
 ### Accessors
 | Signature | Notes |

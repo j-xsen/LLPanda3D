@@ -41,6 +41,7 @@ Color get/set is inherited unchanged from `Light`
 ## Usage
 
 ```cpp
+NodePath render = window->get_render();  // WindowFramework* window
 PT(AmbientLight) alight = new AmbientLight("ambient");
 alight->set_color(LColor(0.2f, 0.2f, 0.2f, 1.0f));
 NodePath alnp = render.attach_new_node(alight);

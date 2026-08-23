@@ -67,6 +67,7 @@ through a [FogAttrib](FogAttrib.md) referencing this node.
 ## Usage
 
 ```cpp
+NodePath render("render");
 PT(Fog) fog = new Fog("scene_fog");
 fog->set_color(0.5, 0.5, 0.6);
 fog->set_linear_range(10.0, 100.0);

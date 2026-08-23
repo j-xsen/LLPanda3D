@@ -57,6 +57,7 @@ plane needs to be defined relative to some coordinate space in the world
 ## Usage
 
 ```cpp
+NodePath render("render");
 PT(PlaneNode) pn = new PlaneNode("clip", LPlane(0, 0, 1, 0));
 NodePath pn_np = render.attach_new_node(pn);
 render.set_clip_plane(pn_np);   // applies a ClipPlaneAttrib referencing this node

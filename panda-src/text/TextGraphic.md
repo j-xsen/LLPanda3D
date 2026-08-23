@@ -46,7 +46,7 @@ see [README.md](README.md#core-concepts).
 ## Usage
 
 ```cpp
-NodePath icon = window.load_model("icon.egg");
+NodePath icon = window->load_model(window->get_render(), "icon.egg");  // WindowFramework* window
 TextGraphic graphic(icon, -0.1f, 1.1f, -0.1f, 1.1f);
 TextPropertiesManager::get_global_ptr()->set_graphic("star", graphic);
 

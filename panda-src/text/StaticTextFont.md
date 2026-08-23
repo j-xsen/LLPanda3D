@@ -62,7 +62,7 @@ FreeType — this is the only font type available in a Panda3D build without
 PT(TextFont) font = FontPool::load_font("myfont.egg");
 
 // Or explicitly, from an already-loaded model:
-PT(PandaNode) model = loader.load_sync("myfont.egg");
+PT(PandaNode) model = Loader::get_global_ptr()->load_sync("myfont.egg");
 PT(StaticTextFont) font = new StaticTextFont(model);
 ```
 

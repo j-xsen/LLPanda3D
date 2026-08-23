@@ -35,6 +35,7 @@ protocol glue) is excluded — Python-only.
 ## Usage
 
 ```cpp
+NodePath scene("scene");
 NodePathCollection lights = scene.find_all_matches("**/=light");
 lights.set_color_scale(0.5, 0.5, 0.5, 1.0);
 ```
