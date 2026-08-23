@@ -1,7 +1,7 @@
-# LLPanda3D — Panda3D C++ API reference for Claude
+# LLPanda3D — Panda3D C++ API reference for LLMs
 
 A git-tracked, incrementally-built reference to the Panda3D 1.10.16 C++ engine
-source (`panda/src/`), written so a Claude session can understand a
+source (`panda/src/`), written so an LLM coding agent can understand a
 subsystem **without re-reading the raw engine source**. Official Panda3D
 docs are Python-focused; this covers the C++ API.
 
@@ -13,15 +13,15 @@ Clone this repo — that's it, no Panda3D source needed:
 git clone https://github.com/j-xsen/LLPanda3D.git
 ```
 
-Then tell your Claude session to read `LLPanda3D/README.md` first (or point
-a `CLAUDE.md` at it). The docs are self-contained; source paths are noted
-for reference only.
+Then point your agent at `LLPanda3D/README.md` first (e.g. via a
+`CLAUDE.md`/`AGENTS.md` or equivalent project-instructions file). The docs
+are self-contained; source paths are noted for reference only.
 
 **If you also have the Panda3D 1.10.16 source** (not just the standard
 distributable), cloning `LLPanda3D/` as a sibling of `panda/` unlocks one extra
-step: Claude can cross-check a doc against the real source when something
+step: the agent can cross-check a doc against the real source when something
 looks off (see step 3 below). Without the source, skip that step — the docs
-still work, Claude just can't verify them against ground truth.
+still work, the agent just can't verify them against ground truth.
 
 ## How this is organized
 
@@ -37,7 +37,7 @@ purpose, non-obvious behavior notes pulled from the `.cxx` (not just the
 header), a compact API reference, events it throws (if any), a minimal usage
 snippet, and links to related classes.
 
-## How to use this as a Claude session
+## How to use this as an LLM agent
 
 1. Check the status table below for documented modules.
 2. Read the module's `README.md` first, then the specific class doc(s).
