@@ -16,7 +16,7 @@ transparently duplicate the object first if it's shared.
 ## Behavior notes
 
 - **All primitives in a Geom must share one fundamental `PrimitiveType`.**
-  You can mix `GeomTriangles` and `GeomTristrips` in the same `Geom`
+  `GeomTriangles` and `GeomTristrips` may be mixed in the same `Geom`
   (both are `PT_polygons`), but not triangles and points — `get_primitive_type()`
   and `get_shade_model()` return the value common to every primitive added.
 - **`decompose()`/`doubleside()`/`reverse()`/`rotate()`/`unify()`/

@@ -12,8 +12,8 @@ for its two scroll bars.
 
 - **Value is stored internally as a normalized ratio `[0, 1]`** (`_ratio`);
   `set_value()`/`get_value()` are thin wrappers that map to/from
-  `[min_value, max_value]`. If you only care about position (e.g. a scroll
-  bar), use `set_ratio()`/`get_ratio()` directly and ignore the value range.
+  `[min_value, max_value]`. When only position matters (e.g. a scroll bar),
+  `set_ratio()`/`get_ratio()` are used directly, ignoring the value range.
   Setting `min_value == max_value` is asserted against.
 - **`set_ratio()`/`set_value()` are ignored while the user is manipulating the
   slider** (`is_button_down()` true — dragging the thumb, holding a scroll
@@ -32,8 +32,8 @@ for its two scroll bars.
 - **`axis` must be exactly one of the four screen-axis unit vectors**
   `(1,0,0)`, `(-1,0,0)`, `(0,0,1)`, `(0,0,-1)` — anything else is
   "indeterminate behavior" per the header comment. `setup_scroll_bar`/
-  `setup_slider` set this correctly for you based on the `vertical` flag; only
-  set it directly if you're building a fully custom slider.
+  `setup_slider` set this correctly based on the `vertical` flag; setting it
+  directly is only needed for a fully custom slider.
 - **`manage_pieces`** auto-positions/sizes the thumb and left/right buttons
   whenever the slider's frame changes (`remanage()`), based on whichever axis
   ("X-dominant" vs "Y-dominant", i.e. `|axis.x| > |axis.y+axis.z|`) the slider

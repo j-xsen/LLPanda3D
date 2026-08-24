@@ -11,7 +11,7 @@ pattern matching) built on top of the trail. Like `ButtonEventList`, it's a
 
 ## Behavior notes
 
-- **`add_event()` computes the derived motion fields for you** — `_dx`, `_dy`,
+- **`add_event()` computes the derived motion fields automatically** — `_dx`, `_dy`,
   `_length`, `_direction`, `_rotation` are all calculated relative to the
   *previous* event in the list at insertion time (zero/undefined for the
   first event). There are three overloads: from a raw `PointerData`, from
@@ -30,8 +30,8 @@ pattern matching) built on top of the trail. Like `ButtonEventList`, it's a
   seconds — **note the loop `while ((pos >= 0) && (_events[pos]._time >= old)) { ...; }`
   never decrements `pos`**, so as written this is an infinite loop if any
   event qualifies (a bug in the shipped 1.10.16 source, not a documentation
-  simplification — verify against your checkout before relying on this
-  method).
+  simplification — verification against the local checkout is warranted
+  before relying on this method).
 - **`match_pattern()` is explicitly unfinished** — the header/method comment
   says "This function is not implemented yet. It is a work in progress"; it
   currently always returns `0.0` regardless of input. Do not rely on it.

@@ -4,8 +4,8 @@
 **Inherits:** [AsyncTask](AsyncTask.md), [AsyncTaskCollection](AsyncTaskCollection.md)
 
 A task that is itself a list of sub-tasks, run one at a time in order, one per
-epoch. Conceptually similar to a `Sequence` interval, but: you can't jump to
-an arbitrary point mid-sequence, and (unlike an interval) the sequence's total
+epoch. Conceptually similar to a `Sequence` interval, but arbitrary mid-sequence
+jumps are not supported, and (unlike an interval) the sequence's total
 duration can change during playback since it's driven by each sub-task's own
 `DoneStatus` rather than a fixed timeline.
 
@@ -28,7 +28,7 @@ duration can change during playback since it's driven by each sub-task's own
   additionally advances `_task_index` so the sequence resumes on the *next*
   sub-task when it wakes (used for the "wait N seconds, then move on" pattern
   — see [AsyncTaskPause](AsyncTask.md#asynctaskpause)).
-- **`DS_done` from a sub-task just advances `_task_index` and returns
+- **`DS_done` from a sub-task advances `_task_index` and returns
   `DS_cont`** on the sequence, i.e. moves to the next sub-task next epoch.
 - **`DS_cont`/`DS_pickup`/`DS_exit`/`DS_interrupt`/`DS_await` pass straight
   through** from the sub-task to the sequence's own return value unmodified.

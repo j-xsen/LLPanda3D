@@ -71,9 +71,9 @@ useful. This doc covers the real, Cg-enabled version.
   depending on `_use_generic_attr`, itself decided from GSG capability
   bits — HLSL/Direct3D 9 targets don't get the `ATTR*` generic-attribute
   names). Running out of registers (more texture stages / tangent-space
-  needs than fit) isn't guarded against in the header; check the `.cxx`
-  synthesis logic directly if you hit register-related shader compile
-  failures on an unusually complex `RenderState`.
+  needs than fit) isn't guarded against in the header; the `.cxx`
+  synthesis logic is the place to check directly when register-related
+  shader compile failures occur on an unusually complex `RenderState`.
 - The class-level doc comment in the header lists the supported feature
   set explicitly: flat/vertex colors, lighting, (multiple) normal maps, a
   single gloss map, a single glow map, materials (but not runtime updates

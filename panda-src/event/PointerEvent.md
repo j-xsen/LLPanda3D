@@ -10,7 +10,7 @@ into a [PointerEventList](PointerEventList.md).
 
 ## Behavior notes
 
-- **You do not fill in the derived fields yourself** — `_length`, `_direction`,
+- **The derived fields are not filled in by direct assignment** — `_length`, `_direction`,
   `_rotation` are computed by [PointerEventList::add_event()](PointerEventList.md),
   not by `PointerEvent` itself (its own constructor just zero-initializes
   everything). Constructing a `PointerEvent` directly and expecting these to

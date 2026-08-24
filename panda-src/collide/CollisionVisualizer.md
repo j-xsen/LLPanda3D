@@ -3,9 +3,9 @@
 **Source:** `panda/src/collide/collisionVisualizer.h` (+ `.I`, `.cxx`)
 **Inherits:** `PandaNode`, [CollisionRecorder](CollisionRecorder.md)
 
-"Shows the polygons that are detected as collisions, as well as those that
-are simply considered for collisions. It may be parented anywhere in the
-scene graph where it will be rendered." The concrete debug tool behind
+Shows the polygons that are detected as collisions, as well as those that
+are merely considered for collisions. It may be parented anywhere in the
+scene graph, where it renders directly. The concrete debug tool behind
 [CollisionTraverser](CollisionTraverser.md)`::show_collisions()`; only
 compiled in when `DO_COLLISION_RECORDING` is defined.
 
@@ -18,11 +18,12 @@ compiled in when `DO_COLLISION_RECORDING` is defined.
 - **Draws detected-vs-tested-but-missed solids differently** — internally
   tracks per-`CollisionSolid`, per-transform detected/missed counts
   (`SolidInfo`) plus a set of surface/contact points/normals, and renders
-  them with distinguishable coloring/wireframe so you can see both what
-  actually collided and what was merely bounds-checked and rejected.
+  them with distinguishable coloring/wireframe, making it possible to
+  distinguish what actually collided from what was merely bounds-checked
+  and rejected.
 - **`point_scale`/`normal_scale` control the on-screen size of the drawn
-  point markers and normal-vector lines** — tune these if the default
-  visualization is too small/large relative to your scene's scale.
+  point markers and normal-vector lines** — adjustable when the default
+  visualization is too small or too large relative to the scene's scale.
 - **Multiple inheritance from `PandaNode` and `CollisionRecorder` (both
   ultimately `TypedObject`) requires the explicit `as_typed_object()`
   disambiguation accessor** — needed anywhere code needs a plain

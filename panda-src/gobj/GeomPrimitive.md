@@ -45,8 +45,8 @@ interning" section).
   concrete subclass overrides only where the operation is meaningful;
   unsupported operations fall back to base-class no-op behavior (e.g.
   `rotate()` returns the *same* primitive unchanged, not a copy, if
-  `rotate_impl()` returns null — check for this if you need to know
-  whether rotation actually happened).
+  `rotate_impl()` returns null — checking for this reveals whether
+  rotation actually happened).
 - **`match_shade_model()`**: `SM_uniform` is compatible with anything;
   `SM_flat_first_vertex` and `SM_flat_last_vertex` are each satisfiable by
   rotating into the other; any other mismatch returns null (incompatible).

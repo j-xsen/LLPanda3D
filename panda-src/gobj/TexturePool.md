@@ -54,8 +54,8 @@ and storing it twice. This is the class app/loader code actually calls —
 - `garbage_collect()` is the automatic equivalent of `release_texture()`:
   sweeps every pool entry whose `Texture` has `get_ref_count() == 1`
   (nothing but the pool holds it) and releases those. Not run
-  automatically — call it periodically (e.g. from a task) if you want
-  unused textures reclaimed without tracking references manually.
+  automatically — it is called periodically (e.g. from a task) when
+  unused textures need reclaiming without tracking references manually.
 - `register_texture_type()`/`get_texture_type()` maintain a
   extension→loader-function registry (`Texture::MakeTextureFunc`) beyond
   what `PNMFileTypeRegistry` (image format plugins) already covers —

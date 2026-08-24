@@ -63,7 +63,7 @@ existing `Geom` updates live rather than requiring a fresh
 
 **Non-linear vs. linear lenses.** The base class's `is_linear()`/
 `is_perspective()`/`is_orthographic()` all default to `false`, and the base
-`do_compute_projection_mat()` just bakes in a coordinate-system conversion
+`do_compute_projection_mat()` bakes in a coordinate-system conversion
 (assumes `CS_zup_right`) with no real projection — it's the fallback for
 hypothetical non-linear lens subclasses (fisheye/cylindrical, mentioned in
 comments but not present in this module). `PerspectiveLens` and
@@ -87,7 +87,7 @@ left-to-right as matrix multiplication in `do_compute_film_mat()`.
 **Bam versioning.** `min_fov`, `interocular_distance`,
 `convergence_distance`, `view_hpr`/`view_vector`/`view_mat` (if explicitly
 set), `keystone`, and `custom_film_mat` are only written/read for bam files
-at minor version ≥ 41 — older files simply don't carry these fields.
+at minor version ≥ 41 — older files don't carry these fields.
 
 ## API
 

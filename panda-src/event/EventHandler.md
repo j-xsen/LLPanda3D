@@ -28,10 +28,10 @@ code (not Python's messenger) subscribes to named events.
 - **Futures integrate transparently.** `get_future(event_name)` returns an
   `AsyncFuture` that `dispatch_event()` automatically resolves (via
   `set_result()`) the next time that event name fires — the entry is then
-  erased from the futures table (one-shot; call `get_future()` again for the
-  next occurrence). If you call `get_future()` again before the event fires,
-  you get back the *same* pending future rather than a duplicate, unless the
-  previous one was explicitly cancelled.
+  erased from the futures table (one-shot; a subsequent `get_future()` call
+  is needed for the next occurrence). Calling `get_future()` again before the
+  event fires returns the *same* pending future rather than a duplicate,
+  unless the previous one was explicitly cancelled.
 - **`remove_hooks(event_name)` clears both tables for that name**;
   `remove_hooks_with(data)` scans every callback-hook entry and removes any
   whose userdata pointer matches, regardless of event name or function —
@@ -39,7 +39,7 @@ code (not Python's messenger) subscribes to named events.
 - **The global handler ignores its `queue` parameter.** `get_global_event_handler(queue)`
   keeps the parameter only for backward compatibility; it always binds to
   `EventQueue::get_global_event_queue()` internally the first time it's
-  created, regardless of what you pass.
+  created, regardless of what is passed.
 
 ## EventReceiver
 

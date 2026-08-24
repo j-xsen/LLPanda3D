@@ -52,8 +52,8 @@ the root of a PG hierarchy; it must be parented into the 2-D scene graph
 (typically `aspect2d`) and given a `MouseWatcher` via `set_mouse_watcher()`.
 Every `PGItem` must be parented somewhere below a `PGTop`, or it will render
 but never receive mouse/keyboard events. Panda's default `aspect2d` /
-`base.mouseWatcherNode` setup in `ShowBase` already does this; if you're
-building the scene graph manually in pure C++, you have to wire it up yourself.
+`base.mouseWatcherNode` setup in `ShowBase` already does this; a scene graph
+built manually in pure C++ must wire this up explicitly.
 
 **Frame vs. state defs.** Every `PGItem` has:
 - a **frame** (`set_frame(left, right, bottom, top)`): the clickable rectangle,

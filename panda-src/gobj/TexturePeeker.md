@@ -4,10 +4,10 @@
 **Inherits:** ReferenceCount
 
 CPU-side random-access reader into a `Texture`'s RAM image, returned by
-`Texture::peek()` (private constructor — never build one directly). Use it
-when app/tool code needs to read individual texel colors back (e.g. terrain
-heightmap sampling, hit-testing against a texture, procedural generation
-reading a source image) without going through the GPU.
+`Texture::peek()` (private constructor — never build one directly). It is
+used when app/tool code needs to read individual texel colors back (e.g.
+terrain heightmap sampling, hit-testing against a texture, procedural
+generation reading a source image) without going through the GPU.
 
 ## Behavior notes
 
@@ -19,9 +19,10 @@ reading a source image) without going through the GPU.
   `_component_type = T_unsigned_byte`/`F_rgba` fixed format, `_z_size = 1`;
   (3) failing both, forces a full decompress via
   `do_get_uncompressed_ram_image()`. `is_valid()` reports whether any of
-  these succeeded — always check it before calling `lookup`/`fetch_pixel`,
-  since an unsupported component-type/format combination leaves `_image`
-  cleared and every subsequent call reads garbage/crashes.
+  these succeeded and should always be checked before calling
+  `lookup`/`fetch_pixel`, since an unsupported component-type/format
+  combination leaves `_image` cleared and every subsequent call reads
+  garbage/crashes.
 - Because it may silently fall back to the simple image, `get_x_size()`/
   `get_y_size()` are **not guaranteed to equal the Texture's real
   dimensions** — always query them from the peeker itself rather than the
@@ -29,7 +30,7 @@ reading a source image) without going through the GPU.
 - `lookup()`/`lookup_bilinear()`/`filter_rect()` take normalized `(u,v[,w])`
   in `[0,1]`; `fetch_pixel()` takes integer `(x,y[,z])` texel coordinates
   directly, unfiltered. `has_pixel()` bounds-checks integer coordinates
-  before you'd call `fetch_pixel()`.
+  ahead of a `fetch_pixel()` call.
 - `filter_rect()` box-filters (averages, weighted by fractional pixel
   coverage) all texels within the given normalized rectangle — used e.g. to
   downsample a region rather than pick one point sample.

@@ -22,9 +22,9 @@ cube-map shadow rendering.
 - **`get_max_distance()` is a hard cutoff, separate from attenuation** —
   even with nonzero attenuation making the light theoretically extend to
   infinity, `max_distance` (default `+inf`, only round-tripped in `.bam`
-  files at minor version ≥ 41) lets you clip the light's influence entirely
-  past a fixed radius for performance, independent of how "dim" the
-  attenuation curve makes it at that distance.
+  files at minor version ≥ 41) clips the light's influence entirely past a
+  fixed radius for performance, independent of how dim the attenuation
+  curve makes it at that distance.
 - **`get_vector_to_light()` returns a real point-to-point vector** (unlike
   [DirectionalLight](DirectionalLight.md)'s constant direction) —
   `_point` transformed into object space, minus the query vertex position.

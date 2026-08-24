@@ -12,10 +12,10 @@ single-line overflow/scissor mode.
 
 ## Behavior notes
 
-- **You must call `setup()` or `setup_minimal()` before real use** — the
-  constructor calls `setup_minimal(10, 1)` itself so it "doesn't crash hard if
-  no one calls setup()", but that's a placeholder, not a usable default.
-  `setup(width, num_lines)` additionally builds a bordered frame with
+- **`setup()` or `setup_minimal()` must be called before real use.** The
+  constructor calls `setup_minimal(10, 1)` internally to avoid an unusable
+  default state, but this is a placeholder, not a substitute for explicit
+  setup. `setup(width, num_lines)` additionally builds a bordered frame with
   focus/no_focus/inactive `PGFrameStyle`s and a default vertical-bar cursor
   graphic; `setup_minimal()` only sizes the text area and cursor, with no
   frame decoration.
@@ -42,8 +42,8 @@ single-line overflow/scissor mode.
   while `set_accept_enabled(false)`) leaves the field focused so the user can
   keep editing.
 - **Arrow/Home/End keys are gated by `set_cursor_keys_active()`** (default
-  true) — set false to prevent the user from repositioning the cursor via
-  keyboard (e.g. for a fixed-format field).
+  true) — setting it false prevents the user from repositioning the cursor
+  via keyboard (e.g. for a fixed-format field).
 - **A blocked "extra trailing space" is silently eaten, not treated as
   overflow** — typing a space that would push a wrapped line over `max_width`,
   when the line already ends in a space, is dropped without firing the
@@ -69,7 +69,7 @@ single-line overflow/scissor mode.
 |---|---|
 | `bool set_wtext(const std::wstring&)` | Returns false if truncated; also clamps cursor position |
 | `std::wstring get_plain_wtext() const` / `get_wtext() const` | |
-| `bool is_wtext() const` | True if any character is non-ASCII (i.e. you should prefer the w-string API) |
+| `bool is_wtext() const` | True if any character is non-ASCII, indicating the w-string API is preferable |
 
 ### Character/graphic introspection
 | Signature | Notes |

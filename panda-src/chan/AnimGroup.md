@@ -29,8 +29,8 @@ the model being animated — [auto_bind](auto_bind.md) and
   line up correctly once the bundle is later bound (matched by name) to a
   `PartBundle`.
 - **`find_child()` searches the whole subtree; `get_child_named()` searches
-  only direct children.** Easy to confuse — reach for `find_child()` unless
-  you specifically want one level.
+  only direct children.** Easy to confuse — `find_child()` is the right
+  choice unless only a single level is specifically intended.
 - **`copy_subtree()` produces a deep copy of the group structure but not
   necessarily the leaf data.** [AnimBundle::copy_bundle()](AnimBundle.md)
   documents that channel data tables (e.g. in

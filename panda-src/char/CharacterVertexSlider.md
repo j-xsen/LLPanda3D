@@ -30,7 +30,7 @@ never points at a `CharacterSlider` directly.
   [JointVertexTransform](JointVertexTransform.md)'s constructor ("converts
   vertices from the indicated joint's coordinate space, into the other
   indicated joint's space") — this class does no coordinate conversion at
-  all; it simply wraps and forwards one `CharacterSlider`'s scalar value.
+  all; it wraps and forwards one `CharacterSlider`'s scalar value directly.
 - **The default constructor is `private`**, used only by the bam loader;
   `complete_pointers()` re-derives `_name` from the resolved `_char_slider`
   once that pointer is available.

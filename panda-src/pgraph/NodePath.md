@@ -76,8 +76,8 @@ is excluded — Python-only.
   composing state down the graph — see
   [RenderState](RenderState.md)/[RenderAttrib](RenderAttrib.md)). There's a
   `set_fluid_*` variant of the position setters that skips the implicit
-  velocity-delta update `set_pos` otherwise performs — use it for teleports
-  where you don't want the object's "previous position" to register a
+  velocity-delta update `set_pos` otherwise performs — used for teleports
+  where the object's previous position should not register a
   giant jump for motion blur.
 - **`show()`/`hide()`/`show_through()`** take an optional per-camera
   `DrawMask`; with none given they affect the special "overall" bit (hidden

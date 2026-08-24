@@ -93,7 +93,7 @@ A mismatch (missing joint, wrong type — matrix channel vs. scalar joint)
 fails the bind for that branch, controlled by `hierarchy_match_flags`
 (`PartGroup::HMF_*` constants).
 
-**Binding creates an `AnimControl`; nothing plays until you do.**
+**Binding creates an `AnimControl`; nothing plays until playback is explicitly started.**
 `PartBundle::bind_anim()` (or the async `load_bind_anim()`) is the one path
 that produces an [AnimControl](AnimControl.md). The control's own
 `play()`/`loop()`/`pose()` (inherited from `AnimInterface`) then drive
@@ -118,7 +118,7 @@ mechanism in detail.
 
 **`auto_bind()` is the shortcut for the common case.** Rather than manually
 walking a loaded scene graph to find matching `AnimBundle`/`PartBundle`
-pairs, [auto_bind()](auto_bind.md) does it for you, matched by bundle name,
+pairs, [auto_bind()](auto_bind.md) does this automatically, matched by bundle name,
 and fills an [AnimControlCollection](AnimControlCollection.md) with the
 results.
 

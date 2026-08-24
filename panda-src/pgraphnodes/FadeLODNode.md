@@ -7,9 +7,9 @@ An [LODNode](LODNode.md) that cross-fades between detail levels instead of
 popping instantaneously. When the selected switch level changes, the old
 and new children are both rendered simultaneously for `get_fade_time()`
 seconds, with the old one alpha-fading out and the new one alpha-fading in.
-Use `LODNode::make_default_lod()` (with `default-lod-type` set to
-`LNT_fade`) or construct directly when you specifically want the fade
-behavior.
+`LODNode::make_default_lod()` (with `default-lod-type` set to `LNT_fade`)
+selects it, or it is constructed directly when the fade behavior is
+specifically wanted.
 
 ## `FadeLODNodeData`
 
@@ -41,7 +41,7 @@ past `get_expiration_time()`, causing a fresh fade-free state).
   fade timeline is played in reverse (`elapsed = _fade_time - elapsed`,
   in/out children swapped) "for best visual quality" per a source comment —
   the intent is that the more-detailed model's fade curve looks the same
-  whether you're approaching or receding, rather than mirroring awkwardly.
+  whether approaching or receding, rather than mirroring awkwardly.
 - **Fade start time uses the *last-rendered* frame time, not "now".** If
   the node was off-screen for a while before a level change is first
   noticed, the fade is computed as if it started back then — so returning
@@ -61,14 +61,14 @@ past `get_expiration_time()`, causing a fresh fade-free state).
   fade bin or override level clears the relevant cached states so they're
   rebuilt with the new settings on next use.
 - **If `support-fade-lod` is globally false, `cull_callback()` degrades to
-  plain `LODNode::cull_callback()`** — an instant pop, no fade — letting
-  you disable fading engine-wide (e.g. for a performance mode) without
+  plain `LODNode::cull_callback()`** — an instant pop, no fade — allowing
+  fading to be disabled engine-wide (e.g. for a performance mode) without
   touching per-node settings.
 - Only `LODNode::write_datagram()`/`fillin()` are actually called for bam
   persistence — `_fade_time`/`_fade_bin_name`/etc. are **not** currently
   serialized to `.bam` files (re-initialized from the `lod-fade-*` config
-  vars on load instead); worth knowing if you set non-default fade
-  parameters and expect them to round-trip through a saved model.
+  vars on load instead); relevant when non-default fade parameters are set
+  and expected to round-trip through a saved model.
 
 ## API
 

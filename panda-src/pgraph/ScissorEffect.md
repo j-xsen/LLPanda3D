@@ -3,8 +3,8 @@
 **Source:** `panda/src/pgraph/scissorEffect.h` (+ `.I`, `.cxx`)
 **Inherits:** RenderEffect
 
-A higher-level wrapper around [ScissorAttrib](ScissorAttrib.md) that lets
-you define the scissor region as world-space points relative to a node
+A higher-level wrapper around [ScissorAttrib](ScissorAttrib.md) that allows
+the scissor region to be defined as world-space points relative to a node
 (projected to screen space at cull time), instead of `ScissorAttrib`'s raw
 screen-fraction rectangle — and additionally performs view-frustum culling
 against that region, not just GPU-level scissoring.

@@ -24,8 +24,8 @@ through a [FogAttrib](FogAttrib.md) referencing this node.
   (traditional camera-relative fog).
 - `set_linear_range(onset, opaque)` and `set_exp_density()` each
   **implicitly switch `_mode`** — the former forces `M_linear`, the latter
-  forces `M_exponential` if currently `M_linear`. Order of calls matters if
-  you're mixing linear and exponential setup on the same node.
+  forces `M_exponential` if currently `M_linear`. Order of calls matters when
+  linear and exponential setup are mixed on the same node.
 - **The parallel-fog-vector problem**: real fog hardware only supports a
   1-D distance-from-camera-plane falloff, but linear in-world fog defines
   fog along an arbitrary 3-D vector (onset point → opaque point). The
@@ -35,7 +35,7 @@ through a [FogAttrib](FogAttrib.md) referencing this node.
   fallback: past `angle` degrees between fog vector and eye vector,
   `adjust_to_camera()` switches to plain camera-relative onset/opaque
   distances instead of the geometric projection. Default fallback cosine
-  is `-1.0` (i.e. fallback essentially never triggers unless explicitly
+  is `-1.0` (i.e. the fallback triggers only when explicitly
   configured).
 - `adjust_to_camera(camera_transform)` — called by the cull traverser each
   frame for linear-mode fog — computes the node's net transform relative

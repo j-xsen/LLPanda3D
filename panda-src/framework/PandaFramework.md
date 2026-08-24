@@ -7,7 +7,7 @@ Application-level scaffolding for a simple Panda3D C++ program: owns the
 `GraphicsEngine`, the global `EventHandler` and `AsyncTaskManager`, the list
 of open `WindowFramework`s, and a set of default viewer keybindings (ESC to
 quit, `w` for wireframe, `t` for texture toggle, arrow keys to walk the
-scene graph in "highlight" mode, etc.). One instance per application. Not a
+scene graph in highlight mode, etc.). One instance per application. Not a
 required part of using Panda3D — it exists to remove boilerplate from small
 programs and samples.
 
@@ -39,7 +39,7 @@ programs and samples.
   call across every `PandaFramework`/`WindowFramework` instance — there's
   only one, not one per framework instance.
 - **`event_esc`'s cascade on close.** Closing a window via the default ESC/q
-  handler doesn't just close that one `WindowFramework` — it looks up the
+  handler affects more than that one `WindowFramework` — it looks up the
   underlying `GraphicsOutput` and closes *every* `WindowFramework` in
   `_windows` that references the same output (relevant after
   `split_window()`, where multiple `WindowFramework`s share one
@@ -53,7 +53,7 @@ programs and samples.
   only replaces the *description* bookkeeping; `EventHandler::add_hook`
   allows multiple hooks per event name, so if `function`/`data` differ, both
   old and new hook still fire unless the old one is separately removed.
-- **`do_frame()` just polls the task manager** — `_task_mgr.poll()` — and
+- **`do_frame()` only polls the task manager** — `_task_mgr.poll()` — and
   returns `!_exit_flag`. `main_loop()` is a bare `while (do_frame(...)) {}`.
   All real per-frame work (data graph traversal, event dispatch, rendering,
   recording) happens as tasks registered in `open_framework()`/
@@ -70,8 +70,8 @@ programs and samples.
 - **`set_highlight`/arrow-key navigation** operate purely on `NodePath`
   parent/child/sibling relationships within whatever tree is currently
   highlighted (defaulting to `get_models()`); moving to a sibling explicitly
-  guards `node != self->get_models()` so you can't navigate above the models
-  root via arrow keys.
+  guards `node != self->get_models()` so navigation cannot proceed above the
+  models root via arrow keys.
 - **`hide_collision_solids`/`show_collision_solids` are static and
   recursive**, walking the full subtree looking for `CollisionNode` or
   `OccluderNode` instances; `show_collision_solids` only shows nodes whose

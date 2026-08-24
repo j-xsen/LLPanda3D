@@ -23,10 +23,10 @@ second, separately-styled bar drawn on top that grows from left to right as
   compute the inset before drawing the bar via `_bar_style.generate_into(...)`.
   Setting a `bar_style` with a nonzero `width` of its own has no effect on this
   inset.
-- **`value` is not clamped by the setter** — `set_value()` stores whatever you
-  pass; only the *rendered fraction* is clamped to `[0, 1]` in `update()`.
-  `get_value()`/`get_percent()` will report out-of-range numbers if you set
-  them that way.
+- **`value` is not clamped by the setter** — `set_value()` stores whatever is
+  passed; only the *rendered fraction* is clamped to `[0, 1]` in `update()`.
+  `get_value()`/`get_percent()` will report out-of-range numbers if it is set
+  that way.
 - **If `value == 0` or `range == 0`, no bar geometry is generated at all**
   (not even a zero-width one).
 

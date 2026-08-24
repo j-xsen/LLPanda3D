@@ -5,8 +5,8 @@
 
 *(since 1.10.0)* An area light shaped as an axis-aligned rectangle,
 emitting along its local +Y axis. Unlike the other lights in this module,
-`RectangleLight` has essentially no configurable shape parameters of its
-own beyond `max_distance` — its rectangle's size/orientation comes from
+`RectangleLight` has almost no configurable shape parameters of its
+own beyond `max_distance` — its rectangle's size/orientation derives from
 however the node itself is scaled/transformed in the scene graph, not from
 a dedicated width/height member.
 
@@ -30,8 +30,8 @@ a dedicated width/height member.
   header** — unlike every other `LightLensNode` subclass, which exposes
   all three. Whatever specular color this returns comes from the base
   `Light` class's default/diffuse-color fallback rather than anything
-  settable specifically on `RectangleLight`; likely just an
-  under-filled-out API rather than an intentional restriction.
+  settable specifically on `RectangleLight`; likely an under-filled-out
+  API rather than an intentional restriction.
 
 ## API
 

@@ -5,9 +5,9 @@
 
 A named event plus zero or more [EventParameter](EventParameter.md)s. This is
 what [throw_event()](throw_event.md) constructs and queues, and what
-[EventHandler](EventHandler.md) hands to your hook function. Application code
-almost never constructs an `Event` directly — use `throw_event()` — but hook
-functions receive a `const Event *` and read it.
+[EventHandler](EventHandler.md) hands to a registered hook function. Application
+code almost never constructs an `Event` directly — `throw_event()` is used
+instead — but hook functions receive a `const Event *` and read it.
 
 ## Behavior notes
 

@@ -27,9 +27,9 @@ decides which is current.
   same reasoning as `LODNode`: child order/identity is semantically
   meaningful, so scene graph flattening must not merge them.
 - An out-of-range `set_visible_child()` index isn't validated at set time —
-  it's simply compared against `get_num_children()` at cull time via the
+  it's compared against `get_num_children()` at cull time via the
   inherited `has_selective_visibility()` protocol, so setting an invalid
-  index just results in nothing being rendered rather than an error.
+  index results in nothing being rendered rather than an error.
 
 ## API
 

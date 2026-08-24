@@ -28,9 +28,9 @@ scroll bars that aren't needed. This is what backs DirectScrolledFrame.
   `recompute_clip()` (clip frame + slider page sizes, if
   `_needs_recompute_clip`) → `recompute_canvas()` (canvas scroll transform, if
   the atomic `_canvas_computed` flag is clear). Almost every setter just flips
-  one of these flags rather than doing work immediately; call `recompute()`
-  (calls `recompute_clip()` + `recompute_canvas()`) or `remanage()` directly
-  only if you need results before the next `cull_callback()`.
+  one of these flags rather than doing work immediately; `recompute()`
+  (calls `recompute_clip()` + `recompute_canvas()`) or `remanage()` is called
+  directly only when results are needed before the next `cull_callback()`.
 - **`auto_hide` implies `manage_pieces`** — setting `auto_hide(true)` forces
   `manage_pieces` on too, since hiding/showing bars requires managed layout.
   With `auto_hide` on, a scroll bar is hidden (and its ratio reset to 0,
@@ -40,7 +40,7 @@ scroll bars that aren't needed. This is what backs DirectScrolledFrame.
   are the `PGItemNotify` overrides used to detect when a scroll bar's own size
   changed (which affects how much clip-area space it consumes) —
   `PGScrollFrame` calls `slider->set_notify(this)` on both bars automatically
-  when you assign them.
+  when they are assigned.
 - **`slider_bar_adjust()`** (the `PGSliderBarNotify` override) doesn't
   recompute synchronously — it just clears the `_canvas_computed` atomic flag
   so the next `cull_callback()` picks up the new scroll position. This makes
@@ -91,7 +91,7 @@ application code.
 
 Inherits [PGItem events](PGItem.md#events). Its child `PGSliderBar`s throw
 their own `adjust-<slider_id>` events (see [PGSliderBar](PGSliderBar.md#events))
-if you need to react to scroll position directly rather than polling
+for reacting to scroll position directly rather than polling
 `get_canvas_transform()`.
 
 ## Usage

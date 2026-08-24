@@ -8,8 +8,8 @@ The GSG-side handle for one uploaded `Texture` view. Created by
 [PreparedGraphicsObjects.md](PreparedGraphicsObjects.md) and the README's
 "`PreparedGraphicsObjects`/`*Context` handshake" section) and subclassed per
 backend (e.g. the GL backend's `CLP(TextureContext)`) to hold the actual API
-handle. You touch this class when writing a new `GraphicsStateGuardian`
-backend or debugging why a texture isn't re-uploading after a change.
+handle. This class is relevant when writing a new `GraphicsStateGuardian`
+backend or debugging why a texture is not re-uploading after a change.
 
 ## Behavior notes
 

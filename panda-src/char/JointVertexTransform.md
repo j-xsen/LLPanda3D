@@ -19,8 +19,8 @@ from the mesh's neutral pose.
 
 ## Behavior notes
 
-- **All three matrix queries just read the joint's cached skinning
-  matrix.** `get_matrix()`, `mult_matrix()`, and `accumulate_matrix()`
+- **All three matrix queries read the joint's cached skinning
+  matrix directly.** `get_matrix()`, `mult_matrix()`, and `accumulate_matrix()`
   read/compose/accumulate `_joint->_skinning_matrix` directly — none of them
   do any computation of their own. All the real work
   (`_skinning_matrix = _initial_net_transform_inverse * _net_transform`)
@@ -37,9 +37,9 @@ from the mesh's neutral pose.
 - **The `.cxx` constructor's doc comment is stale/copy-pasted**: it
   describes "convert[ing] vertices from the indicated joint's coordinate
   space, into the other indicated joint's space," but the constructor only
-  takes one joint and does no such two-joint conversion — it simply binds
-  to that one joint's skinning matrix.
-- **`output()`** prints just the joint's name.
+  takes one joint and does no such two-joint conversion — it binds
+  directly to that one joint's skinning matrix.
+- **`output()`** prints only the joint's name.
 - **The default constructor is `private`**, used only by the bam loader.
 
 ## API

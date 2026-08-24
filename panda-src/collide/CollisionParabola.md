@@ -15,8 +15,8 @@ frame.
 
 - **`t1`/`t2` are the parabola's own parametric range, not world
   units** — they're the same `t` domain `LParabola::calc_point(t)` uses;
-  match them to however you're already stepping the projectile's simulated
-  time.
+  they should be matched to whatever scheme already steps the projectile's
+  simulated time.
 - **Has no exact analytic bounding volume** — `compute_internal_bounds()`
   approximates it by sampling, tuned by the
   `collision-parabola-bounds-threshold` / `collision-parabola-bounds-sample`

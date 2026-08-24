@@ -107,8 +107,8 @@ convention (`panda/src/putil/collideMask.h`): the low 20 bits are reserved
 for `CollisionNode`s (`default_collision_node_collide_mask =
 CollideMask::lower_on(20)`, set as *both* from- and into-mask on a new
 `CollisionNode`), bit 20 is the default for ordinary `GeomNode`s
-(`default_geom_node_collide_mask`), and bits 21-31 are unassigned — pick your
-own bits above 20 to scope custom collider/target pairs. `CollisionNode`
+(`default_geom_node_collide_mask`), and bits 21-31 are unassigned — custom
+collider/target pairs are typically scoped using dedicated bits above 20. `CollisionNode`
 additionally restricts itself to `get_legal_collide_mask() ==
 CollideMask::all_on()` (no restriction), unlike renderable geometry nodes.
 

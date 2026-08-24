@@ -32,13 +32,13 @@ adding others.
 - `compose_impl`: if `other` turns off all planes, it wins outright.
   Otherwise a plane on in `other`'s off-list cancels a plane on in this
   attrib's on-list (three-way sorted merge of on/on/off).
-  `invert_compose_impl` simply returns `other` — the comment in the source
-  admits this is likely not fully correct but not worth the complexity to
+  `invert_compose_impl` returns `other` directly — the comment in the source
+  notes this is likely not fully correct but not worth the complexity to
   fix.
 - The old `Operation`-based interface (`make(op, plane...)`,
   `get_operation()`, `get_num_planes()`, `get_plane()`, `has_plane()`,
   `add_plane()`, `remove_plane()`) is **deprecated** — logs a warning on
-  every call and internally just dispatches to the on/off-plane interface
+  every call and internally dispatches to the on/off-plane interface
   below. New code should not use it; omitted from the API table.
 - Bam versioning: pre-4.0-minor-version files stored raw node pointers and
   reconstruct `NodePath`s from `AttribNodeRegistry` in `finalize()`; 4.0+

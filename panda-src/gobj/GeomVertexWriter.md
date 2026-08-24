@@ -21,12 +21,12 @@ standard way to populate procedurally-generated geometry.
   write position currently past the last row.
 - Same buffer-lifetime caveat as `GeomVertexReader`: doesn't hold a
   reference count on the vertex buffer, isn't meant to be kept long-term,
-  and — critically — **construct writers before readers** on the same
-  `GeomVertexData` if you need both, since `set_column()` on a writer can
-  trigger a copy-on-write reallocation that would invalidate an
-  already-constructed reader's pointers. Prefer
-  [GeomVertexRewriter](GeomVertexRewriter.md) if you need both on the same
-  column.
+  and — critically — **writers must be constructed before readers** on the
+  same `GeomVertexData` when both are needed, since `set_column()` on a
+  writer can trigger a copy-on-write reallocation that would invalidate an
+  already-constructed reader's pointers.
+  [GeomVertexRewriter](GeomVertexRewriter.md) is preferred when both are
+  needed on the same column.
 - `reserve_num_rows(int)` pre-allocates array storage for up to that many
   rows without triggering a reallocation on each `add_data*()` call — worth
   calling before a large procedural-generation loop. When the writer was

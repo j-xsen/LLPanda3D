@@ -32,7 +32,7 @@ not protected, but the class doc still directs callers through
   then the size is dictated entirely by the host, not by these flags).
 - **Almost every draw/flip lifecycle method is forwarded straight to the
   host**: `flip_ready()`, `begin_flip()`, `ready_flip()`, `end_flip()` all
-  just call the same method on `_host`. `begin_frame()` calls
+  call the same method on `_host` directly. `begin_frame()` calls
   `_host->begin_frame(FM_parasite, ...)` (note the mode is always
   `FM_parasite`, regardless of what mode was requested on the parasite
   itself) — meaning the host actually does the real rendering setup; the
@@ -42,7 +42,7 @@ not protected, but the class doc still directs callers through
   it calls `promote_to_copy_texture()` (demoting any `RTM_bind_or_copy`
   texture request down to a real copy, since a `ParasiteBuffer` can never
   bind directly) followed by `copy_to_textures()` (inherited from
-  `GraphicsOutput`). `FM_refresh` mode skips this entirely and just returns.
+  `GraphicsOutput`). `FM_refresh` mode skips this entirely and returns directly.
 - **`is_active()` requires both itself *and* its host to be active** —
   `GraphicsOutput::is_active() && _host->is_active()` — so a parasite buffer
   goes inactive automatically whenever its host does, with no separate

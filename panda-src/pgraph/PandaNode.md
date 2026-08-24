@@ -17,8 +17,8 @@ directly (see [NodePath](NodePath.md) for why). Application code that
   `PandaNode` keeps a full `Up` list (parents) as well as a `Down` list
   (children) — the same node can be instanced under several different
   parents at once, which is how model instancing works. This is also why a
-  `PandaNode*` alone can't disambiguate "which occurrence in the graph do
-  you mean" — that's `NodePath`'s job. Child pointers are ref-counted
+  `PandaNode*` alone cannot disambiguate which occurrence in the graph is
+  meant — that is `NodePath`'s job. Child pointers are ref-counted
   (`PT(PandaNode)`); parent pointers are **not** (raw `PandaNode*`), so
   parent/child references don't form a reference cycle — a node's lifetime
   is governed by its children/instance references, not by its parents.

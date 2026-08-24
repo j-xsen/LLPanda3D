@@ -6,7 +6,7 @@
 
 A node that issues an arbitrary user-supplied `CallbackObject` callback
 during the cull traversal, the draw traversal, or both, instead of (or in
-addition to) rendering geometry. Use it to hook custom logic — debug
+addition to) rendering geometry. It hooks custom logic — debug
 visualization, procedural state changes, non-`Geom` draw calls — directly
 into the render pipeline at a specific point in the scene graph.
 
@@ -21,10 +21,10 @@ into the render pipeline at a specific point in the scene graph.
   each child.
 - **Infinite default bounding volume.** The constructor sets
   `set_internal_bounds(new OmniBoundingVolume)` — a `CallbackNode` is never
-  view-frustum-culled by default, on the theory that a naive user who never
-  sets a real bounding volume should still see their callback fire rather
-  than have it silently culled. Set a tighter bounding volume yourself if
-  the callback's effect is spatially local.
+  view-frustum-culled by default, on the theory that a callback whose
+  bounding volume is never set should still fire rather than be silently
+  culled. A tighter bounding volume should be set explicitly if the
+  callback's effect is spatially local.
 - **`safe_to_combine()` returns `false`** — like `LODNode`, a `CallbackNode`
   is never merged with siblings during scene graph flattening, since its
   identity (and thus which callback fires when) is meaningful.
@@ -55,7 +55,7 @@ class `CallbackData`) passed to a `CallbackNode`'s cull callback.
 |---|---|
 | `get_trav() const` | The `CullTraverser` in use — traversal-invariant data (`DisplayRegion`, `Camera`, …). |
 | `get_data() const` | The `CullTraverserData` for *this* node — current position in the traversal, accumulated transform/state. |
-| `upcall()` | Restores default behavior: if this node is a `CallbackNode` with a draw callback set, queues a `CullableObject` for it; then manually re-invokes `trav->traverse()` on every child. Call this from your cull callback if you want traversal to continue normally below this node. |
+| `upcall()` | Restores default behavior: if this node is a `CallbackNode` with a draw callback set, queues a `CullableObject` for it; then manually re-invokes `trav->traverse()` on every child. Called from the cull callback to continue traversal normally below this node. |
 
 ## Usage
 

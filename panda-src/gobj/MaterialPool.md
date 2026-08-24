@@ -7,15 +7,15 @@
 different [Material](Material.md) pointers with equivalent *values*, so
 the engine doesn't waste memory on duplicate equivalent `Material` objects
 or waste GSG time switching between lighting states that are really
-identical. Build a temporary `Material` describing the state you want,
-call `get_material()`, and use whatever it returns instead of your
-temporary.
+identical. A temporary `Material` describing the desired state is built,
+passed to `get_material()`, and the returned instance is used in place of
+the original.
 
 ## Behavior notes
 
 - **This is not full interning like `RenderState`/`GeomVertexFormat`.**
   `get_material(temp)` looks up by *value* (`indirect_compare_to`, i.e.
-  `Material::compare_to()`), but on a first-time value it stores your
+  `Material::compare_to()`), but on a first-time value it stores the
   `temp` pointer itself as the canonical instance (keyed by a *separate
   value-copy* `new Material(*temp)`, not by `temp`) — so the very first
   caller with a given value effectively "wins" and becomes the shared

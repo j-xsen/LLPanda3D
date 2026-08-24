@@ -49,7 +49,7 @@ race where another thread could look up the same basename in the interval
 between the refcount hitting zero and the destructor removing the entry.
 The destructor itself only asserts (debug builds) that the entry is
 already gone, rather than removing it. The root `InternalName` (no parent)
-skips this entirely and just calls the base `unref()`.
+skips this entirely and calls the base `unref()` directly.
 
 **Bam (de)serialization does its own refcounting dance.** Because
 `make_from_bam()` must return a raw `TypedWritable*` while going through

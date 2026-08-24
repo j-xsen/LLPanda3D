@@ -3,10 +3,10 @@
 **Source:** `panda/src/collide/collisionHandlerFloor.h` (+ `.I`, `.cxx`)
 **Inherits:** [CollisionHandlerPhysical](CollisionHandlerPhysical.md)
 
-"Sets the Z height of the collider to a fixed linear offset from the highest
-detected collision point each frame. It's intended to implement walking
-around on a floor of varying height by casting a ray down from the avatar's
-head." No gravity/falling simulation — it's a direct snap, not physics; for
+Sets the Z height of the collider to a fixed linear offset from the highest
+detected collision point each frame, implementing walking on a floor of
+varying height by casting a ray down from the avatar's head. No gravity or
+falling simulation is performed — this is a direct snap, not physics; for
 actual fall/jump velocity, see [CollisionHandlerGravity](CollisionHandlerGravity.md).
 
 ## Behavior notes
@@ -26,7 +26,7 @@ actual fall/jump velocity, see [CollisionHandlerGravity](CollisionHandlerGravity
   configuration) effectively means uncapped/instant.
 - **No falling when there's no floor beneath** — unlike
   [CollisionHandlerGravity](CollisionHandlerGravity.md), if a frame's ray
-  finds no hit within `reach`, the target simply isn't moved that frame
+  finds no hit within `reach`, the target is not moved that frame
   rather than beginning to fall.
 
 ## API

@@ -7,9 +7,9 @@ Defines the properties of one named "slot" in the multitexture pipeline: a
 `TextureAttrib` (`pgraph`) associates a `Texture` with each of a set of
 `TextureStage`s applied to a piece of geometry, and the GSG sorts and
 renders all currently-active stages in `sort` order, combining each one
-into the running result per its `Mode`/combine settings. You create one
-`TextureStage` per texture "role" you need (diffuse, normal map, gloss,
-…) and reuse it across many `TextureAttrib`s/`NodePath`s — unlike
+into the running result per its `Mode`/combine settings. One `TextureStage`
+is created per texture "role" needed (diffuse, normal map, gloss,
+…) and reused across many `TextureAttrib`s/`NodePath`s — unlike
 `RenderAttrib`, `TextureStage` is **not** interned/immutable; it's a
 regular mutable ref-counted object, so mutating a shared stage affects
 every `TextureAttrib` that references it.
@@ -29,7 +29,7 @@ every `TextureAttrib` that references it.
 - `sort` controls render *order* (lowest first); `priority` controls which
   stages get *dropped* when the hardware supports fewer simultaneous
   texture units than are requested — these are independent knobs.
-- `is_fixed_function()` is simply `mode < M_normal`: every `Mode` enumerator
+- `is_fixed_function()` is defined as `mode < M_normal`: every `Mode` enumerator
   before `M_normal` (`M_modulate`, `M_decal`, `M_blend`, `M_replace`,
   `M_add`, `M_combine`, `M_blend_color_scale`, `M_modulate_glow`,
   `M_modulate_gloss`) is usable by the classic fixed-function pipeline;

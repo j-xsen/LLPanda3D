@@ -7,9 +7,8 @@ Same pattern-substitution event mechanism as
 [CollisionHandlerEvent](CollisionHandlerEvent.md), but each `begin_group()`/
 `end_group()` cycle only keeps the single *closest* collider (tracked via an
 internal `_collider_distance` / `_closest_collider`) rather than every
-detected pair — useful when you only care about "what am I closest to right
-now" (e.g. a single highlighted pick target) instead of every simultaneous
-overlap.
+detected pair — useful when only the current closest target matters (e.g. a
+single highlighted pick target) instead of every simultaneous overlap.
 
 ## API
 

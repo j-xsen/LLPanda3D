@@ -64,5 +64,64 @@ snippet, and links to related classes.
 | collide | `panda/src/collide` | Done (2026-08-23) — see [panda-src/collide/README.md](panda-src/collide/README.md) |
 | chan | `panda/src/chan` | Done (2026-08-23) — see [panda-src/chan/README.md](panda-src/chan/README.md) |
 | char | `panda/src/char` | Done (2026-08-23) — see [panda-src/char/README.md](panda-src/char/README.md) |
+| putil | `panda/src/putil` | Done (2026-08-23) — see [panda-src/putil/README.md](panda-src/putil/README.md) |
+| linmath | `panda/src/linmath` | Not started |
+| mathutil | `panda/src/mathutil` | Not started |
+| dgraph | `panda/src/dgraph` | Not started |
+| tform | `panda/src/tform` | Not started |
+| cull | `panda/src/cull` | Not started |
+| pipeline | `panda/src/pipeline` | Not started |
+| pstatclient | `panda/src/pstatclient` | Not started |
+| express | `panda/src/express` | Not started |
+| downloader | `panda/src/downloader` | Not started |
+| net | `panda/src/net` | Not started |
+| nativenet | `panda/src/nativenet` | Not started |
+| device | `panda/src/device` | Not started |
+| recorder | `panda/src/recorder` | Not started |
+| egg | `panda/src/egg` | Not started |
+| egg2pg | `panda/src/egg2pg` | Not started |
+| parametrics | `panda/src/parametrics` | Not started |
+| particlesystem | `panda/src/particlesystem` | Not started |
+| physics | `panda/src/physics` | Not started |
+| grutil | `panda/src/grutil` | Not started |
+| distort | `panda/src/distort` | Not started |
+| movies | `panda/src/movies` | Not started |
+| vision | `panda/src/vision` | Not started |
+| ffmpeg | `panda/src/ffmpeg` | Not started |
+| audiotraits | `panda/src/audiotraits` | Not started |
+| vrpn | `panda/src/vrpn` | Not started |
+| bullet | `panda/src/bullet` | Not started |
+| ode | `panda/src/ode` | Not started |
+| physx | `panda/src/physx` | Not started |
+| speedtree | `panda/src/speedtree` | Not started |
+| rocket | `panda/src/rocket` | Not started |
+| pnmimage | `panda/src/pnmimage` | Not started |
+| pnmimagetypes | `panda/src/pnmimagetypes` | Not started |
+| pnmtext | `panda/src/pnmtext` | Not started |
+| gsgbase | `panda/src/gsgbase` | Not started |
+| glstuff | `panda/src/glstuff` | Not started |
+| glgsg | `panda/src/glgsg` | Not started |
+| gles2gsg | `panda/src/gles2gsg` | Not started |
+| glesgsg | `panda/src/glesgsg` | Not started |
+| dxgsg9 | `panda/src/dxgsg9` | Not started |
+| tinydisplay | `panda/src/tinydisplay` | Not started |
+| windisplay | `panda/src/windisplay` | Not started |
+| wgldisplay | `panda/src/wgldisplay` | Not started |
+| x11display | `panda/src/x11display` | Not started |
+| glxdisplay | `panda/src/glxdisplay` | Not started |
+| egldisplay | `panda/src/egldisplay` | Not started |
+| cocoadisplay | `panda/src/cocoadisplay` | Not started |
+| osxdisplay | `panda/src/osxdisplay` | Not started |
+| iphone | `panda/src/iphone` | Not started |
+| iphonedisplay | `panda/src/iphonedisplay` | Not started |
+| android | `panda/src/android` | Not started |
+| androiddisplay | `panda/src/androiddisplay` | Not started |
+| dxml | `panda/src/dxml` | Not started |
+| configfiles | `panda/src/configfiles` | Not started |
+| downloadertools | `panda/src/downloadertools` | Not started |
+| pandabase | `panda/src/pandabase` | Not started |
+| skel | `panda/src/skel` | Not started |
+| testbed | `panda/src/testbed` | Not started |
+| doc | `panda/src/doc` | Not started (Panda3D's own doc source, likely nothing to mirror) |
 
-Everything else under `panda/src/` is not yet documented.
+Everything above is tracked; anything under `panda/src/` missing from this table hasn't been triaged yet.

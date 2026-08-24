@@ -16,7 +16,7 @@ off the main thread before attaching it to the live scene graph.
 - `do_task()` wraps `_orig` in a fresh throwaway `NodePath("flatten_root")`
   and calls `flatten_strong()` on it, then stores
   `np.get_child(0).node()` (the flattened result) via `set_result()`.
-  **If `_orig` currently has no parents**, it can't simply be
+  **If `_orig` currently has no parents**, it cannot be
   `attach_new_node()`'d without altering the original (attaching would
   reparent it) — so in that case the request makes a *shallow* copy first
   (`make_copy()` + `copy_children()`) and flattens the copy instead,

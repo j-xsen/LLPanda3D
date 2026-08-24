@@ -22,8 +22,8 @@ path via `add_flags()`.
   characters — an optimization so simple path components don't pay glob
   matching overhead.
 - `**` cannot be combined with `@@` directly (`@@**` is rejected as
-  ambiguous) — the error message directs you to use `@@*/**` or `**/@@*`
-  instead.
+  ambiguous) — the error message directs the caller to use `@@*/**` or
+  `**/@@*` instead.
 
 ## FindApproxLevelEntry (internal traversal helper, folded in)
 

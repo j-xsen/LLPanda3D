@@ -19,9 +19,9 @@ under a [PGTop](PGTop.md). See [README.md](README.md) for the shared concepts
   events never fire, even if the node has visible geometry.
 - **`get_id()` drives every event name and defaults to the region's
   auto-generated name** (see [PGMouseWatcherRegion](PGMouseWatcherRegion.md)),
-  not the node's `get_name()`. Call `set_id()` if you need
-  predictable/human-readable event names; the region name and thus every
-  event name changes immediately.
+  not the node's `get_name()`. Predictable/human-readable event names
+  require calling `set_id()`, which changes the region name and thus every
+  event name immediately.
 - **Only one `PGItem` in the whole application can have keyboard focus at a
   time** (`_focus_item` is a static). Calling `set_focus(true)` on one item
   automatically calls `set_focus(false)` on whichever item had it.
@@ -41,10 +41,10 @@ under a [PGTop](PGTop.md). See [README.md](README.md) for the shared concepts
   creates a `NodePath` for state `n` the first time it's called; the frame
   style geometry for that state is (re)generated on demand and cached, marked
   stale by `frame_changed()` / `set_frame_style()`.
-- **`instance_to_state_def()`** is the normal way to put your own geometry into
-  a state — it instances your `NodePath` under the (possibly not-yet-existing)
-  state-def root, rather than you calling `get_state_def()` and reparenting
-  manually.
+- **`instance_to_state_def()`** is the normal way to put custom geometry into
+  a state — it instances the given `NodePath` under the (possibly
+  not-yet-existing) state-def root, rather than requiring a manual
+  `get_state_def()` call followed by reparenting.
 - **The `press`/`repeat` distinction:** `press()` throws a `repeat-` event
   instead of `press-` when `param.is_keyrepeat()` is true (OS key-repeat), but
   the Notify callback (`item_press`) fires the same way either way.

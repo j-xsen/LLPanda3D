@@ -15,21 +15,21 @@ what backs [AsyncTaskSequence](AsyncTaskSequence.md)'s sub-task list.
   (`PointerToArray`), which is itself refcounted and shareable; `add_task()`,
   `remove_task()`, and `remove_task(index)` all check `_tasks.get_ref_count() > 1`
   first and clone the array before mutating if it's shared, so copying an
-  `AsyncTaskCollection` is cheap (shares storage) until you mutate one of the
-  copies.
+  `AsyncTaskCollection` is cheap (shares storage) until one of the copies is
+  mutated.
 - **Duplicates are allowed by default** — `add_tasks_from()` appends without
-  checking for existing entries; call `remove_duplicate_tasks()` explicitly if
-  you need uniqueness (keeps the *first* occurrence of each task, removes
-  later ones).
+  checking for existing entries; `remove_duplicate_tasks()` establishes
+  uniqueness explicitly when needed (keeps the *first* occurrence of each
+  task, removes later ones).
 - **`find_task(name)` is a linear scan**, returning the first match — if
-  multiple tasks share a name, which one you get is whatever's first in
+  multiple tasks share a name, the one returned is whatever's first in
   insertion order, not defined by any other criterion.
 - **This class itself is not thread-safe** — per the header's own `TODO: None
   of this is thread-safe yet.` comment. `AsyncTaskChain`/`AsyncTaskManager`
-  build a *new* `AsyncTaskCollection` under their own lock and hand you a
-  private snapshot, so the returned collection is safe to read, but don't
-  treat a collection you're actively building/mutating as safe to share
-  across threads.
+  build a *new* `AsyncTaskCollection` under their own lock and hand back a
+  private snapshot, so the returned collection is safe to read, but a
+  collection actively being built/mutated is not safe to share across
+  threads.
 
 ## API
 

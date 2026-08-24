@@ -4,7 +4,7 @@
 **Inherits:** [TextFont](TextFont.md)
 
 A font whose glyphs are all pre-generated and loaded from a model produced by
-the `egg-mkfont` tool, rather than rasterized on demand. Doesn't require
+the `egg-mkfont` tool, rather than rasterized on demand. Does not require
 FreeType — this is the only font type available in a Panda3D build without
 `HAVE_FREETYPE`.
 
@@ -37,7 +37,7 @@ FreeType — this is the only font type available in a Panda3D build without
   quality level / min filter / mag filter are only overridden if they're still
   at their `_default`/`FT_default` values — an explicitly-authored egg file
   can still override these per-texture.
-- **`_is_valid` is simply `!_glyphs.empty()`** — a model with zero
+- **`_is_valid` is defined as `!_glyphs.empty()`** — a model with zero
   integer-named child nodes produces a "loaded successfully but has no
   glyphs" font, which will render every character as the invalid-glyph
   placeholder.

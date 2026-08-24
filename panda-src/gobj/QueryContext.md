@@ -7,8 +7,8 @@ Base class for asynchronous GPU queries — a round-trip request to the graphics
 
 ## Behavior notes
 
-- Pure virtual `is_answer_ready() const` — subclasses must implement the actual poll. The base's own `.cxx` definition (present despite the `=0` in the header — an unusual but valid C++ pattern for pure virtuals with a default body subclasses can still call) simply returns `false`, serving as a fallback/`QueryContext::is_answer_ready()` explicit-base-call target.
-- `waiting_for_answer()` is a non-pure virtual hook (default no-op) a caller can invoke to tell the GSG "I'm now blocking on this, please expedite it" — e.g. a GSG backend might do a driver flush/sync in an override rather than just spin-polling.
+- Pure virtual `is_answer_ready() const` — subclasses must implement the actual poll. The base's own `.cxx` definition (present despite the `=0` in the header — an unusual but valid C++ pattern for pure virtuals with a default body subclasses can still call) returns `false` unconditionally, serving as a fallback/`QueryContext::is_answer_ready()` explicit-base-call target.
+- `waiting_for_answer()` is a non-pure virtual hook (default no-op) a caller can invoke to signal to the GSG that it is now blocking on the answer and would like the query expedited — e.g. a GSG backend might perform a driver flush/sync in an override rather than spin-polling.
 - Both `is_answer_ready()` and `waiting_for_answer()` are documented as **only valid to call from the draw thread**.
 
 ## API

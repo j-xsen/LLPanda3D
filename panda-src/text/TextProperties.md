@@ -55,8 +55,8 @@ properties of a block of text are just the `TextNode` itself.
   does **not** itself clear `_text_state` — but since every `set_*` goes
   through `operator=`-based copy paths in normal `TextNode` usage
   (`TextProperties::operator=`), this doesn't surface as a bug in practice;
-  it's a detail worth knowing if you hold a raw `TextProperties&` and mutate
-  it directly without a fresh copy.
+  it's a detail worth knowing when holding a raw `TextProperties&` and
+  mutating it directly without a fresh copy.
 - **The compiled-in default font is loaded exactly once, lazily, on first
   access.** `get_default_font()` checks a static `_loaded_default_font` flag
   and calls `load_default_font()` on first miss; see

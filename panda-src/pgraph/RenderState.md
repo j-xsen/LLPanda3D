@@ -43,8 +43,7 @@ which return a shared, cached pointer.
   already has an attrib with a *strictly higher* override value, the call is
   a no-op and returns `this` unchanged. `set_attrib()` (with or without an
   explicit override) always replaces unconditionally, ignoring priority —
-  use it when you intend to force a value regardless of what's already
-  there.
+  used to force a value regardless of what is already there.
 - **Garbage collection:** interned states are refcounted three ways
   (`cache_ref`/`node_ref`/plain `ref`); `RenderState::garbage_collect()` (or
   the automatic sweep gated by `garbage-collect-states`/

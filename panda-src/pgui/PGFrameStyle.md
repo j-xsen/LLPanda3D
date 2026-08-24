@@ -33,9 +33,9 @@ passed to `PGItem::set_frame_style(state, style)`.
 - **`xform(mat)`** scales `width` by the matrix's X/Z axis lengths (used when a
   `PGItem::xform()` is applied, e.g. from `NodePath::set_scale()`) and returns
   whether the style is affected at all (false for `T_none`/`T_flat`).
-- **`generate_into()` is normally called for you** by `PGItem` when a state's
-  frame is (re)built; you rarely call it directly except in low-level/custom
-  widget code.
+- **`generate_into()` is normally called automatically** by `PGItem` when a
+  state's frame is (re)built; direct calls are rare, confined to
+  low-level/custom widget code.
 
 ## API
 

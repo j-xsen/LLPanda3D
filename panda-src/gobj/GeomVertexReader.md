@@ -21,12 +21,12 @@ column and advancing all of them together is faster than repeatedly calling
   operation that might reallocate or deallocate the underlying buffer, and
   don't hold one long-term — it's meant for one quick pass.
 - **Construction order matters when mixing with a writer on the same data:**
-  create any `GeomVertexWriter`s on the data *before* creating readers,
-  since a writer's `set_column()` can trigger a copy-on-write reallocation
-  of the buffer, which would invalidate a reader constructed first. If you
-  need both a reader and a writer on the same column, use
-  [GeomVertexRewriter](GeomVertexRewriter.md) instead — it manages this
-  ordering internally.
+  any `GeomVertexWriter`s on the data must be created *before* creating
+  readers, since a writer's `set_column()` can trigger a copy-on-write
+  reallocation of the buffer, which would invalidate a reader constructed
+  first. When both a reader and a writer are needed on the same column,
+  [GeomVertexRewriter](GeomVertexRewriter.md) is used instead — it manages
+  this ordering internally.
 - `set_column()` accepts either a column index or an `InternalName` (via
   `CPT_InternalName`); either form resets `get_read_row()` back to
   `get_start_row()` (the row last passed to `set_row()`, or 0).

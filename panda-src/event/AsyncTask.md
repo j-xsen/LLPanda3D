@@ -4,11 +4,12 @@
 **Inherits:** [AsyncFuture](AsyncFuture.md), `Namable`
 **Inherited by:** `GenericAsyncTask`, `AsyncTaskPause` (both below), [AsyncTaskSequence](AsyncTaskSequence.md)
 
-One schedulable unit of work. To create task behavior, subclass and override
-`do_task()` (and optionally `is_runnable()`, `upon_birth()`, `upon_death()`);
-or, if you don't want to subclass, use `GenericAsyncTask` with a plain
-function pointer. A task is also an [AsyncFuture](AsyncFuture.md) — it can be
-awaited, cancelled, and given a `done_event`, on top of running repeatedly.
+One schedulable unit of work. Task behavior is created by subclassing and
+overriding `do_task()` (and optionally `is_runnable()`, `upon_birth()`,
+`upon_death()`); `GenericAsyncTask` with a plain function pointer is
+available when subclassing is undesired. A task is also an
+[AsyncFuture](AsyncFuture.md) — it can be awaited, cancelled, and given a
+`done_event`, on top of running repeatedly.
 
 ## Behavior notes
 
@@ -31,18 +32,18 @@ awaited, cancelled, and given a `done_event`, on top of running repeatedly.
     frame (all chains), but this task itself continues next epoch as if
     `DS_cont`.
   - `DS_await` — suspend until another future completes (see `AsyncFuture`).
-- **`cancel()` is `final` and defined as `remove()`.** You cannot override
-  cancellation behavior on a task subclass the way you might on a plain
+- **`cancel()` is `final` and defined as `remove()`.** Cancellation behavior
+  cannot be overridden on a task subclass the way it can on a plain
   `AsyncFuture` subclass — removing a task from its manager *is* cancelling it.
 - **Sort changes on a currently-queued task can require removal +
   reinsertion.** `set_sort()`/`set_priority()` only trigger a live
   remove/re-add if the task is `S_active` *and* its current sort is still `>=`
   the chain's `_current_sort` (i.e. hasn't already been passed this epoch);
-  otherwise the value is just updated in place and takes effect next time it's
+  otherwise the value is updated in place and takes effect next time it's
   scheduled.
 - **`set_task_chain()` on a live, active task also causes an immediate
-  remove/re-add** — moving chains isn't just a label change while the task is
-  actively queued.
+  remove/re-add** — moving chains is not merely a label change while the
+  task is actively queued.
 - **`get_name_prefix()` strips trailing `-<digits>`/`_<digits>`** from the
   name (e.g. `"particle-42"` → `"particle"`) to group related tasks under one
   PStats profiling collector. This is a profiling/display concern only —
@@ -51,8 +52,9 @@ awaited, cancelled, and given a `done_event`, on top of running repeatedly.
   by name.
 - **`upon_birth()`/`upon_death()` throw generic manager-wide events** —
   `<manager_name>-addTask` / `<manager_name>-removeTask`, each with the task
-  itself as the sole `EventParameter`, in addition to whatever your own
-  override does (always call the base-class version if you override these).
+  itself as the sole `EventParameter`, in addition to whatever an overriding
+  subclass's implementation does (the base-class version must always be
+  called when these are overridden).
 - **Every task gets a globally unique numeric id** (`get_task_id()`), assigned
   via lock-free compare-and-swap on a static counter at construction time —
   independent of name, which need not be unique.
@@ -95,7 +97,7 @@ delay given at construction, then finishes. Exists specifically to insert a
 timed pause inside an [AsyncTaskSequence](AsyncTaskSequence.md):
 
 ```cpp
-AsyncTaskPause(double delay);   // constructor calls set_delay(delay) for you
+AsyncTaskPause(double delay);   // constructor calls set_delay(delay) automatically
 ```
 
 ## API
@@ -117,7 +119,7 @@ enum State { S_inactive, S_active, S_servicing, S_servicing_removed,
 |---|---|
 | `void set_delay(double)` / `clear_delay()` / `bool has_delay() const` / `double get_delay() const` | Delay before the task first runs (or restarts, on `DS_again`) |
 | `double get_wake_time() const` | Only meaningful while `S_sleeping` |
-| `void recalc_wake_time()` | Re-applies the current delay immediately, as if the task just returned `DS_again`, while it's sleeping |
+| `void recalc_wake_time()` | Re-applies the current delay immediately, as if the task had recently returned `DS_again`, while it's sleeping |
 | `double get_start_time() const` / `int get_start_frame() const` | Asserts task is not `S_inactive` |
 | `double get_elapsed_time() const` / `int get_elapsed_frames() const` | Since start/last `DS_again` |
 | `double get_dt() const` / `get_max_dt() const` / `get_average_dt() const` | Wall-clock time consumed by the task's own `do_task()` calls |

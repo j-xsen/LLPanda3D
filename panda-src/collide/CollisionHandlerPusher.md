@@ -4,9 +4,10 @@
 **Inherits:** [CollisionHandlerPhysical](CollisionHandlerPhysical.md)
 **Inherited by:** [CollisionHandlerFluidPusher](CollisionHandlerFluidPusher.md)
 
-"Simply pushes back on things that attempt to move into solid walls. This is
-the simplest kind of 'real-world' collision you can have." The default
-choice for "let the player walk around but not through walls."
+Applies a corrective push to any object attempting to move into solid
+geometry — the simplest form of physical collision response. The default
+choice for allowing a player to walk around solid geometry without passing
+through it.
 
 ## Behavior notes
 

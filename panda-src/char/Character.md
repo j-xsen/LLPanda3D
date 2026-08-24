@@ -45,8 +45,8 @@ to support it.
 - **`make_copy()` vs `dupe_for_flatten()` vs `copy_subgraph()`:** `make_copy()`
   deep-copies the joint bundle(s) and builds fresh dynamic vertex arrays,
   but explicitly does **not** copy the original's geometry — the header
-  warns the new `Character` "won't look like much" until you use
-  `copy_subgraph()` instead, which does copy geometry (via the internal
+  warns the new `Character` "won't look like much" until `copy_subgraph()`
+  is used instead, which does copy geometry (via the internal
   `r_copy_children()`/`r_copy_char()` machinery) and redirects every `Geom`'s
   `TransformTable`/`TransformBlendTable`/`SliderTable` to point at the new
   character's joints/sliders. `dupe_for_flatten()` is similar to

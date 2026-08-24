@@ -3,8 +3,8 @@
 **Source:** `panda/src/chan/animControl.h` / `.I` / `.cxx`
 **Inherits:** `TypedReferenceCount`, `AnimInterface`, `Namable`
 
-Controls the timing of one character/bundle animation binding — the object
-you actually call `play()`/`loop()`/`stop()`/`pose()` on. One `AnimControl`
+Controls the timing of one character/bundle animation binding — the object on
+which `play()`/`loop()`/`stop()`/`pose()` are actually called. One `AnimControl`
 is created per `PartBundle` × `AnimBundle` pairing (typically via
 `PartBundle::bind_anim()`); it doesn't own the animation data itself, just
 tracks playback state (frame, rate, looping) via the inherited
@@ -52,8 +52,8 @@ which `AnimControl` last started playing among possibly several bound to it.
   `true` means it bound successfully, `false` means `fail_anim()` was called
   (bad file, missing joints, etc.) and the object is a permanent no-op stub.
 - **`set_pending_done_event()` fires immediately if already resolved.** If
-  the bind already finished (success or failure) by the time you set the
-  event name, `throw_event()` fires right away rather than waiting for a
+  the bind already finished (success or failure) by the time the event name
+  is set, `throw_event()` fires right away rather than waiting for a
   bind that has already happened.
 - **`get_bound_joints()` is `BitArray::all_on()` for a normal full-body
   animation**, and a strict subset only when this control resulted from a

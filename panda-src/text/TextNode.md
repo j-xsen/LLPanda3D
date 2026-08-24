@@ -14,13 +14,13 @@ generator via `generate()`.
 
 - **Rebuilding is lazy and dirty-flag-driven, guarded by a per-instance
   `Mutex`.** Setters like `set_text_color()`, `set_wordwrap()`, `set_font()`
-  (all overridden here vs. the `TextProperties` base) just flip
+  (all overridden here vs. the `TextProperties` base) flip
   `F_needs_rebuild` and/or `F_needs_measure` and return — no assembly work
   happens until something actually needs the result. Two internal helpers
   gate the real work: `check_rebuild()` calls `do_rebuild()` if
   `F_needs_rebuild` is set; `check_measure()` calls `do_measure()` if
-  `F_needs_measure` is set. **`do_measure()` doesn't actually do a cheaper
-  measure-only pass — it just calls `do_rebuild()`.** So even a
+  `F_needs_measure` is set. **`do_measure()` does not actually perform a
+  cheaper measure-only pass — it calls `do_rebuild()` directly.** So even a
   measurement-only query (`get_left()`, `get_num_rows()`, etc.) can trigger a
   full `TextAssembler` run if the text is dirty.
 - **`invalidate_no_measure()` vs. `invalidate_with_measure()`**: the former
@@ -67,7 +67,7 @@ generator via `generate()`.
   additionally pushed through a `SceneGraphReducer` to apply attributes
   directly to existing vertices — meaning a flattening pass touching an
   already-built `TextNode` mutates its stored colors in place rather than
-  just wrapping it in a state change.
+  merely wrapping it in a state change.
 - **`get_unsafe_to_apply_attribs()` refuses texture-matrix and "other"
   attribute categories.** `TextNode` has no mechanism to bake a tex-matrix
   transform into its glyph UVs, so the scene graph flattener is told to leave
@@ -97,7 +97,7 @@ generator via `generate()`.
 ### Rebuild control
 | Signature | Notes |
 |---|---|
-| `PT(PandaNode) generate()` | Returns a standalone node with the current text's geometry; call repeatedly for independent copies |
+| `PT(PandaNode) generate()` | Returns a standalone node with the current text's geometry; repeated calls produce independent copies |
 | `void update()` | Forces `check_rebuild()` now instead of at next cull |
 | `void force_update()` | Rebuilds unconditionally, even if not marked dirty |
 | `PT(PandaNode) get_internal_geom() const` | Debug-only; logs a warning when called |

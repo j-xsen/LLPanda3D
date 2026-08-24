@@ -25,27 +25,28 @@ never actually written to bam files.
   through directly — it exists purely as the target for whole-window
   operations: `clear()`, `save_screenshot()`/`get_screenshot()`, and the
   `RenderBuffer` type lookups. `get_overlay_display_region()` exposes it
-  read-only; `set_overlay_display_region()` lets you replace it but does
-  **not** remove the old one for you — you must separately call
-  `remove_display_region()` on it.
+  read-only; `set_overlay_display_region()` replaces it but does
+  **not** remove the old one automatically — `remove_display_region()`
+  must be called separately on it.
 - **Default clear behavior on construction**: every new `GraphicsOutput`
   starts with color, depth, and stencil clear-active all `true` and the
   clear color set from the `background-color` config variable (see
   [README.md](README.md#config-variables-config_displayh)) — a fresh output
-  clears to the configured gray by default unless you turn clears off.
+  clears to the configured gray by default unless clears are explicitly
+  turned off.
 - **Stereo mode is decided once, at construction, from config**, via the
   `default_stereo_flags` constructor parameter (which `GraphicsWindow`
   passes `true` and `ParasiteBuffer` passes `false`, so a parasite buffer
-  never independently red-blue/side-by-side stereo-izes itself — it just
-  mirrors its host). `_red_blue_stereo` and `_side_by_side_stereo` are only
+  never independently red-blue/side-by-side stereo-izes itself — it
+  mirrors its host directly instead). `_red_blue_stereo` and `_side_by_side_stereo` are only
   turned on if the framebuffer itself doesn't already claim true hardware
   stereo (`!fb_prop.is_stereo()`). `is_stereo()` is true if *any* of the
   three mechanisms (red-blue, side-by-side, or real hardware stereo) is
   active.
 - **`make_display_region()` picks mono vs. stereo automatically** based on
-  `is_stereo()` and the `default-stereo-camera` config variable — call
-  `make_mono_display_region()` or `make_stereo_display_region()` explicitly
-  to bypass the auto-detection. In side-by-side stereo mode, even
+  `is_stereo()` and the `default-stereo-camera` config variable —
+  `make_mono_display_region()` or `make_stereo_display_region()` can be
+  called explicitly to bypass the auto-detection. In side-by-side stereo mode, even
   "mono" regions actually become a `StereoDisplayRegion` with both eyes set
   to `Lens::SC_mono`, because side-by-side mode requires drawing every
   region twice (once per half of the window) regardless of whether it's
@@ -61,7 +62,9 @@ never actually written to bam files.
   clear-depth/clear-stencil-active flags (on the assumption the two eyes
   share one depth buffer, so only one of them needs to actually clear it —
   but the right eye is made to clear too, redundantly, in this branch;
-  reread if depth-buffer-sharing semantics matter for your use case).
+  the exact depth-buffer-sharing semantics here diverge slightly from that
+  assumption and merit closer inspection of the source when precise
+  behavior matters).
 - **Render-to-texture is a per-output list, not a single slot** —
   `add_render_texture()` can be called multiple times to bind several
   textures (e.g. one for color, one for depth) to the same output
@@ -80,21 +83,21 @@ never actually written to bam files.
   requested but the GSG or the `support-render-texture` config var doesn't
   allow binding, the mode silently downgrades to `RTM_copy_texture` — except
   `RTM_bind_layered`, which has no copy fallback (layered/cube/3-D-texture
-  targets can't be produced by a simple framebuffer copy) and just logs an
+  targets can't be produced by a simple framebuffer copy) and logs an
   error instead.
 - **`RenderTextureMode` distinguishes "direct" vs. "copy" render-to-texture**:
   `RTM_bind_or_copy` (try direct GPU binding, fall back to copy),
   `RTM_copy_texture`/`RTM_copy_ram` (explicit per-frame copy to
   texture-memory or system RAM), `RTM_triggered_copy_texture`/
   `RTM_triggered_copy_ram` (copy only after an explicit `trigger_copy()`
-  call — useful for expensive offscreen renders you don't need every
+  call — useful for expensive offscreen renders not needed every
   frame), and `RTM_bind_layered` (direct binding to a specific layer of a
   cube map/3-D texture/texture array, selected via a geometry shader — no
   copy fallback exists).
-- **`make_texture_buffer()` is the "just give me a texture" convenience
-  entry point** — it builds minimal `FrameBufferProperties` (1 color bit, 1
-  alpha bit, 1 depth bit — i.e. "I'll take whatever depth/color/alpha the
-  backend can give me") unless you supply your own, requests
+- **`make_texture_buffer()` is a minimal convenience entry point for
+  obtaining a texture** — it builds minimal `FrameBufferProperties` (1
+  color bit, 1 alpha bit, 1 depth bit, accepting whatever depth/color/alpha
+  the backend can provide) unless custom properties are supplied, requests
   `GraphicsPipe::BF_refuse_window` (so `GraphicsEngine::make_output()` is
   forced to produce an offscreen buffer or `ParasiteBuffer` rather than a
   real window — see [GraphicsPipe.md](GraphicsPipe.md) for the `BF_*` flag
@@ -106,7 +109,7 @@ never actually written to bam files.
   by `GraphicsEngine::make_output()`, steered by the `prefer-texture-buffer`
   /`prefer-parasite-buffer`/`force-parasite-buffer`/`prefer-single-buffer`
   config variables (see [README.md](README.md#config-variables-config_displayh)).
-- **`make_cube_map()` builds a complete 6-camera rig**, not just a texture —
+- **`make_cube_map()` builds a complete 6-camera rig**, not only a texture —
   it creates one `PerspectiveLens(90,90)` shared by six `Camera`s (one per
   cube face, aimed via `look_at()` using hardcoded axis-aligned
   look/up vectors), parents them all to the caller-supplied `camera_rig`
@@ -122,7 +125,7 @@ never actually written to bam files.
 - **`change_scenes()` is the cube-map/multi-page-texture page-switch
   hook**, called by `GraphicsEngine` between `DisplayRegion`s when the
   target texture page changes. In bind/layered render-to-texture mode it
-  just calls `select_target_tex_page()` to redirect the backend to the new
+  calls `select_target_tex_page()` directly to redirect the backend to the new
   page for the *next* frame's draw; in copy-to-texture mode it must
   immediately copy the framebuffer contents rendered so far into the *old*
   page's texture, because that data will be gone once drawing continues
@@ -155,7 +158,7 @@ never actually written to bam files.
   it's active only if it has at least one currently-active `DisplayRegion`
   (lazily recomputed via `determine_display_regions()` when the "stale"
   flag is set).
-- **`set_sort()` doesn't just assign a member** — it delegates to
+- **`set_sort()` does more than assign a member** — it delegates to
   `GraphicsEngine::set_window_sort()` so the engine can re-sort its
   internal ordering; the plain `_sort` member is only ever mutated through
   that path, never directly.

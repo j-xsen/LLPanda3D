@@ -7,7 +7,7 @@ Abstract base for every GSG-specific "handle to an uploaded resource" class — 
 
 ## Behavior notes
 
-- The default constructor and both virtual methods are trivial — `output()` just prints `"SavedContext " << this`, and `write()` indents and calls `output()`. Every subclass overrides `output()` to say something more useful; if you see the plain `"SavedContext 0x..."` output somewhere, it means a subclass forgot to override `output()`.
+- The default constructor and both virtual methods are trivial — `output()` just prints `"SavedContext " << this`, and `write()` indents and calls `output()`. Every subclass overrides `output()` to say something more useful; if the plain `"SavedContext 0x..."` output appears, a subclass has forgotten to override `output()`.
 - Because it carries no data, there's no `release`/cleanup logic here — subclasses own that entirely.
 
 ## API

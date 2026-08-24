@@ -67,7 +67,7 @@ Not documented here (out of scope for this C++ reference):
 - **`config_event`** — module config/init boilerplate (registers types, no
   runtime API of its own); its two notify categories (`event`, `task`) are
   noted above.
-- **`pt_Event`** (`pt_Event.h`) — just the explicit template-instantiation
+- **`pt_Event`** (`pt_Event.h`) — only the explicit template-instantiation
   boilerplate for `PT(Event)`/`CPT(Event)` (aliased as `PT_Event`/`CPT_Event`);
   no API beyond the typedefs, mentioned in [Event.md](Event.md).
 
@@ -88,8 +88,8 @@ singleton.** `EventQueue::get_global_event_queue()` and
 `throw_event()` always queues onto the global queue, and
 `EventHandler::process_events()` (called once per frame by the application
 framework) drains it and dispatches to whatever hooks are registered on the
-global handler. You can construct your own `EventQueue`/`EventHandler` pairs
-for isolated event domains, but that's uncommon.
+global handler. Applications may construct their own `EventQueue`/`EventHandler`
+pairs for isolated event domains, though this is uncommon.
 
 **`EventParameter` is a type-erased, refcounted value box.** It wraps an int,
 double, `std::string`, `std::wstring`, or any `TypedWritableReferenceCount` /

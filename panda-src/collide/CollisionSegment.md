@@ -12,8 +12,8 @@ generally the closest on the segment to point A."
 ## Behavior notes
 
 - **Meant as a *from* solid**, like [CollisionRay](CollisionRay.md) — used
-  for bounded raycasts where you specifically don't want hits beyond a known
-  max distance (e.g. a melee attack's reach, a tether length check).
+  for bounded raycasts where hits beyond a known max distance are
+  specifically not wanted (e.g. a melee attack's reach, a tether length check).
 - **Same `set_from_lens()` screen-space construction helper as
   [CollisionRay](CollisionRay.md)**, but here `point_a`/`point_b` define the
   finite extent rather than an origin/infinite-direction pair.

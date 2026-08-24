@@ -72,7 +72,7 @@ ModelFlattenRequest / GeomTransformer / SceneGraphReducer / CacheStats
 `PandaNode` is the actual scene-graph node — reference-counted, and (unlike
 most Panda3D objects) **allowed to have multiple parents**, since the same
 node can be instanced into the graph at more than one place. Because a node
-alone doesn't identify *which* instance/path you mean, application code
+alone does not identify *which* instance/path is meant, application code
 almost never touches `PandaNode` directly.
 
 `NodePath` is a lightweight value-type handle to one specific path from a

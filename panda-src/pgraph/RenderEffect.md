@@ -8,7 +8,7 @@ PolylightEffect, ScissorEffect, ShowBoundsEffect, TexProjectorEffect
 Abstract base for special per-node behaviors — billboarding, decaling,
 compass-facing, portal/occluder marking — that must be applied as soon as
 they're encountered on a node, in contrast to [RenderAttrib](RenderAttrib.md)
-(appearance properties like color/texture that simply propagate down to
+(appearance properties like color/texture that propagate directly down to
 leaves without acting on the node they're found on). Held on `PandaNode` as
 a `CPT(RenderEffects)` set, not individually. Never constructed directly;
 each subclass provides its own `make()`.
@@ -16,7 +16,7 @@ each subclass provides its own `make()`.
 ## Behavior notes
 
 - **Simpler composition than RenderAttrib**: `RenderEffects` (plural) is
-  just a flat set keyed by `TypeHandle` — there's no `compose()`/override-
+  a flat set keyed by `TypeHandle` — there's no `compose()`/override-
   priority mechanism like `RenderState` has, since effects apply locally to
   the node they're on rather than propagating and combining across the
   graph.

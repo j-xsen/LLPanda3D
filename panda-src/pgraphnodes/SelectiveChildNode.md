@@ -30,8 +30,8 @@ selection directly in `cull_callback()` instead of through this class's
 - **`_selected_child` is a plain (non-pipeline-cycled) member**, unlike most
   mutable `PandaNode` state. A source comment flags this explicitly as not
   fully thread-safe and calls it "probably a problem in the non-thread-safe
-  design" — worth knowing if you're debugging pipelining/threading issues
-  around these nodes.
+  design" — relevant when debugging pipelining/threading issues around
+  these nodes.
 - `select_child()` is `protected` — only subclasses call it (from their own
   `cull_callback()`), not application code directly.
 

@@ -31,7 +31,7 @@ collision — it's up to the handler to check `has_*()` before reading.
   most static shape/shape tests.
 - **`get_respect_prev_transform()` mirrors the traverser's setting at the
   time this entry was generated** — reflects whether swept collision was
-  active for this hit, not something you set on the entry.
+  active for this hit, not a value set directly on the entry.
 - **Clip planes:** `get_into_clip_planes()` lazily discovers and caches
   (`check_clip_planes()`) any `ClipPlaneAttrib` in effect on the *into* node
   path, since [CollisionPolygon](CollisionPolygon.md)/[CollisionBox](CollisionBox.md)

@@ -19,8 +19,8 @@ sequences is named `.boo` ("binary other objects").
 - **`read_object()` returns pointers that are not yet safe to use** — call
   `resolve()` afterward to fix up all internal cross-references (a Bam file
   can contain forward/circular pointer references written before their
-  targets, resolved in a second pass). `read_node()` calls `resolve()` for
-  you.
+  targets, resolved in a second pass). `read_node()` calls `resolve()`
+  automatically.
 - **`read_node()` is the convenience path for scene-graph bam files**: reads
   one object, verifies it's a `PandaNode` (errors and returns null
   otherwise), resolves it, and — if `report_errors` — reads once more to

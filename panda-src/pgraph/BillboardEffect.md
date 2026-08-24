@@ -43,7 +43,7 @@ Used for sprites, particle billboards, and similar always-facing geometry.
   every frame.
 - An "off" `BillboardEffect` (`is_off() == true`) means no billboarding;
   this only shows up as an implicit result of `NodePath::get_rel_state()`
-  and is not something you construct directly.
+  and is not something constructed directly.
 
 ## API
 

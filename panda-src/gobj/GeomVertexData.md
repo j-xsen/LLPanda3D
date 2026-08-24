@@ -12,10 +12,10 @@ all columns interleaved). Optionally carries the tables that drive
 per-vertex animation: a [TransformTable](TransformTable.md) (hardware
 skinning palette), a [TransformBlendTable](TransformBlendTable.md) (CPU
 soft-skinning), and a [SliderTable](SliderTable.md) (morph/blend-shape
-targets). This is the class you construct directly when building procedural
-geometry; you read/write its contents through
+targets). This is the class constructed directly when building procedural
+geometry; its contents are read/written through
 [GeomVertexReader/Writer/Rewriter](GeomVertexReader.md), never by poking at
-arrays yourself.
+arrays directly.
 
 ## Behavior notes
 
@@ -36,8 +36,8 @@ arrays yourself.
   `convert_to()` below). **`unclean_set_format()`** instead *reinterprets*
   existing bytes under the new format with zero data movement — it asserts
   (debug builds only) that array count and per-array stride match between
-  old and new formats, and performs no other validation; get the format
-  wrong and you get garbage vertices, silently, in release builds.
+  old and new formats, and performs no other validation; an incorrect
+  format silently produces garbage vertices in release builds.
 - **`convert_to(new_format)`** matches columns name-by-name between formats
   and is itself **cached** per-instance: a private `Cache` keyed by target
   `GeomVertexFormat` (via `CacheKey`/`CacheEntry`, both nested types) stores
@@ -70,9 +70,9 @@ arrays yourself.
     [gobj README](README.md#residency-tracking-lrus-and-allocators)), this
     returns the *previous* cached animated result (or the unanimated
     original data if there's no prior cache) rather than blocking — i.e.
-    by default you may render one frame of stale/unanimated vertices while
-    a paged-out buffer is faulted back in. Pass `force=true` to block until
-    resident instead.
+    by default one frame of stale/unanimated vertices may render while
+    a paged-out buffer is faulted back in. Passing `force=true` blocks
+    until resident instead.
 - **`pack_abcd`/`unpack_abcd_*`** implement DirectX-style 4-byte-packed
   component packing (`NT_packed_dcba`/`dabc`); **`pack_ufloat`/
   `unpack_ufloat_*`** implement the 3-value 32-bit unsigned-float packing
@@ -107,7 +107,7 @@ Grouped by purpose.
 | `UsageHint get_usage_hint() const` / `set_usage_hint(hint)` | Propagates to every array. |
 | `const GeomVertexFormat *get_format() const` / `set_format(format)` / `unclean_set_format(format)` | See Behavior notes. |
 | `bool has_column(name) const` | — |
-| `int get_num_rows() const` / `bool set_num_rows(n)` / `unclean_set_num_rows(n)` / `reserve_num_rows(n)` / `clear_rows()` | New rows zero-initialize, except the "color" column which initializes to `(1,1,1,1)`. `unclean_*`/`reserve_*` skip zero-init for a small perf win when you're about to overwrite everything anyway. |
+| `int get_num_rows() const` / `bool set_num_rows(n)` / `unclean_set_num_rows(n)` / `reserve_num_rows(n)` / `clear_rows()` | New rows zero-initialize, except the "color" column which initializes to `(1,1,1,1)`. `unclean_*`/`reserve_*` skip zero-init for a small perf win when everything is about to be overwritten anyway. |
 | `size_t get_num_arrays() const` / `CPT(GeomVertexArrayData) get_array(i)` / `PT(...) modify_array(i)` / `set_array(i, array)` | Direct array access — prefer `GeomVertexReader`/`Writer` for row-level work. |
 
 **Animation tables**

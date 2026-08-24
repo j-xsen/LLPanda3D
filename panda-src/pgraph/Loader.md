@@ -6,7 +6,7 @@
 The front-end for loading (and saving) model files. Get the shared
 application-wide instance with `Loader::get_global_ptr()` (used implicitly
 by `NodePath::load()`-style helpers elsewhere in the engine), or construct
-your own if you want an isolated task chain/thread pool. Supports both
+a custom one for an isolated task chain/thread pool. Supports both
 synchronous loads (`load_sync()`, blocks until done) and asynchronous loads
 (`make_async_request()` + `load_async()`, runs on a background
 [AsyncTaskChain](../event/AsyncTaskChain.md)).

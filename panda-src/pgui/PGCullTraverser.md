@@ -3,7 +3,7 @@
 **Source:** `panda/src/pgui/pgCullTraverser.h` / `.I` / `.cxx`
 **Inherits:** `CullTraverser`
 
-Internal plumbing — you will almost never construct or reference this class
+Internal plumbing — this class is almost never constructed or referenced
 directly. It's a `CullTraverser` subclass that [PGTop](PGTop.md) substitutes in
 for the normal traverser during its `cull_callback()`, purely to carry two
 extra pieces of data through the traversal so [PGItem::cull_callback()](PGItem.md)

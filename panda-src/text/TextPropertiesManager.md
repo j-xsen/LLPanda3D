@@ -17,16 +17,16 @@ discourage creating a second instance.
   default-constructed structure under that name, and return it — so a typo'd
   name in embedded text doesn't throw or produce an "unknown" rendering, it
   just silently renders with default properties (or an empty/invisible
-  graphic) from then on. Use `has_properties()`/`has_graphic()` first if you
-  need to distinguish "was explicitly registered" from "fell back to
-  default."
+  graphic) from then on. `has_properties()`/`has_graphic()` distinguish "was
+  explicitly registered" from "fell back to default" without triggering
+  auto-creation.
 - **The graphic-from-model convenience overload derives its frame from
   `calc_tight_bounds()`, not the model's declared bounding volume.**
   `set_graphic(name, model)` (without an explicit `TextGraphic`) computes the
   frame as the model's actual tight bounding box projected onto the X/Z
   (right/up) plane — more accurate but more expensive than the cheap
-  bounding-volume overload. Create a `TextGraphic` explicitly first if you
-  want a hand-tuned frame instead (e.g. deliberately over- or under-sized).
+  bounding-volume overload. A hand-tuned frame (e.g. deliberately over- or
+  under-sized) requires constructing a `TextGraphic` explicitly instead.
 
 ## API
 

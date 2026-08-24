@@ -12,15 +12,15 @@ and clipping tests run in 2D.
 ## Behavior notes
 
 - **Points must be coplanar, wound consistently, and convex — the class
-  will not validate or fix this for you at runtime** (the concavity-rejection
+  does not validate or repair this at runtime** (the concavity-rejection
   code in the constructor is present but commented out in the `.cxx`, so a
-  concave/degenerate polygon is silently accepted and will simply produce
-  wrong collision results). Call `is_valid()` (at least 3 points) and
-  `is_concave()` yourself during content authoring/debugging if you build
-  polygons from arbitrary data; use static `verify_points(a, b, c[, d])`
-  before construction to check ahead of time.
+  concave/degenerate polygon is silently accepted and produces incorrect
+  collision results). Polygons built from arbitrary data should be checked
+  with `is_valid()` (at least 3 points) and `is_concave()` during content
+  authoring or debugging; static `verify_points(a, b, c[, d])` provides a
+  pre-construction sanity check.
 - **`is_valid()` only checks point count (`>= 3`)** — it does *not* check
-  planarity or convexity, despite the name; don't rely on it to catch a bad
+  planarity or convexity, despite the name, and does not catch a malformed
   polygon shape.
 - **Inherits `CollisionPlane`'s solid-half-space semantics** — the polygon
   is a bounded region *of* that infinite plane; `dist_to_plane()`, `flip()`,

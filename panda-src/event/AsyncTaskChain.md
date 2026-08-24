@@ -6,7 +6,7 @@
 One independently-scheduled queue of tasks, with its own optional pool of
 background threads. An [AsyncTaskManager](AsyncTaskManager.md) owns a set of
 named chains; tasks run on whichever chain their `get_task_chain()` names
-(default `"default"`). Chains are how you get real parallelism — tasks on
+(default `"default"`). Chains are the mechanism for real parallelism — tasks on
 *different* chains can run concurrently on separate threads; tasks on the
 *same* chain are serialized by sort value (see below) even with multiple
 threads assigned to that chain.
@@ -64,7 +64,7 @@ threads assigned to that chain.
 
 | Signature | Notes |
 |---|---|
-| `AsyncTaskChain(AsyncTaskManager *manager, const std::string &name)` | Normally created for you via `AsyncTaskManager::make_task_chain()` |
+| `AsyncTaskChain(AsyncTaskManager *manager, const std::string &name)` | Normally created automatically via `AsyncTaskManager::make_task_chain()` |
 | `void set_tick_clock(bool)` / `get_tick_clock() const` | Auto-tick the manager's clock once per epoch on this chain |
 | `void set_num_threads(int)` / `int get_num_threads() const` | `0` = synchronous/`poll()`-driven |
 | `int get_num_running_threads() const` | Actual live thread count; `0` before start or if threading unsupported |

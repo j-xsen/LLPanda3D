@@ -38,8 +38,8 @@ the scene graph.
   `cull_callback()` — unlike most `RenderAttrib`s, `TextureAttrib`
   participates directly in the cull traversal (source not fully shown
   here; likely related to view-frustum-relative Texture staging/eviction
-  or similar GSG-driven behavior — check `textureAttrib.cxx` if this
-  matters for your use case).
+  or similar GSG-driven behavior — check `textureAttrib.cxx` for the
+  details when this matters).
 - Each on-stage can carry its own `SamplerState` override
   (`add_on_stage(stage, tex, sampler, override)`); if none is given,
   `get_on_sampler()` falls back to the `Texture`'s own default sampler.

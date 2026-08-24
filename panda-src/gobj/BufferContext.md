@@ -28,7 +28,7 @@ Base class for the `SavedContext` subclasses that occupy an easily-measured, sub
 
 ## Usage
 
-Application code essentially never touches `BufferContext` directly — a GSG backend calls these from within its own `prepare_texture()`/`apprehend`-style implementation:
+Application code rarely touches `BufferContext` directly — a GSG backend calls these from within its own `prepare_texture()`/`apprehend`-style implementation:
 
 ```cpp
 // inside a GSG backend's release/upload path

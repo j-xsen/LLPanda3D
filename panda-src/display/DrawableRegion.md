@@ -3,8 +3,8 @@
 **Source:** `panda/src/display/drawableRegion.h` (+ `.I`, `.cxx`)
 **Inherits:** (none) **Inherited by:** [GraphicsOutput](GraphicsOutput.md) (also inherits `GraphicsOutputBase`, external), [DisplayRegion](DisplayRegion.md) (also inherits `TypedReferenceCount`)
 
-Shared base of the two "rectangular region you can issue drawing/clear
-commands into" concepts in the display module: a whole `GraphicsOutput`
+Shared base of the two rectangular regions that accept drawing/clear
+commands in the display module: a whole `GraphicsOutput`
 (window or buffer) and a `DisplayRegion` (sub-rectangle within one). Not a
 linear inheritance chain — `GraphicsOutput` and `DisplayRegion` each inherit
 `DrawableRegion` independently alongside their own primary base. Provides
@@ -23,7 +23,7 @@ to it directly.
   by `RTP_color`/`RTP_depth`/`RTP_stencil`. Any of the 16 `RenderTexturePlane`
   values (color, depth, stencil, depth_stencil, 4 aux-rgba, 4 aux-hrgba, 4
   aux-float) can independently have its own clear-active flag and clear
-  value — not just the three named convenience methods.
+  value — not only the three named convenience methods.
 - **Default clear values on construction**: every plane defaults to
   `LColor(0,0,0,0)` except `RTP_depth`, which defaults to `(1,1,1,1)` (i.e.
   clear depth defaults to the far plane, `1.0`). `_pixel_zoom` and

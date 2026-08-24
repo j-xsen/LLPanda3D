@@ -5,8 +5,8 @@
 
 A rectangular sub-region of a [GraphicsOutput](GraphicsOutput.md) (window or
 buffer) that renders a scene through a `Camera`. Usually one `DisplayRegion`
-covers the whole window, but you can create more to split a window (split
-screen, side-by-side stereo, picture-in-picture), or stack them like panes
+covers the whole window, but multiple regions may be created to split a
+window (split screen, side-by-side stereo, picture-in-picture), or stack them like panes
 of glass (layering a 2-d GUI over a 3-d scene, at a higher `sort`).
 Constructor is `protected` — created only via
 `GraphicsOutput::make_display_region()`/`make_mono_display_region()`/
@@ -53,8 +53,8 @@ calls those rather than constructing one directly.
   `stereo_channel`s).
 - **`set_stereo_channel()` resets `tex_view_offset` as a side effect** — to
   `1` for `Lens::SC_right`, `0` otherwise — so a stereo setup's per-eye
-  texture-view selection tracks the channel automatically unless you
-  override it afterward with `set_tex_view_offset()`.
+  texture-view selection tracks the channel automatically unless
+  overridden afterward with `set_tex_view_offset()`.
 - **`set_target_tex_page()`/`set_cube_map_index()` (the latter deprecated,
   forwards to the former) select which face/page of a multi-page render
   target (cube map, multiview texture) this region renders into**; a
@@ -70,8 +70,8 @@ calls those rather than constructing one directly.
   thread).
 - **`get_screenshot()` may hop threads.** It compares the GSG's
   `threading_model.get_draw_stage()` against the calling thread's pipeline
-  stage; if they don't match (i.e. you're not already on the draw thread)
-  it delegates to `GraphicsEngine::do_get_screenshot()` to run there instead
+  stage; if they don't match (i.e. the calling thread isn't already the draw
+  thread) it delegates to `GraphicsEngine::do_get_screenshot()` to run there instead
   of grabbing framebuffer contents from the wrong thread.
 - **`supports_pixel_zoom()` requires both color and depth clearing to be
   active** on top of the window itself supporting pixel zoom — a region

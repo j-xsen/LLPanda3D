@@ -29,8 +29,8 @@ introduce.
 - **`_has_specular_color` bam-version-gates.** Files saved before minor
   version 39 don't store this flag and are read back assuming
   `_has_specular_color = true` (older behavior always had an explicit
-  specular color) — a compatibility shim worth knowing if you're debugging
-  lighting differences between old and new `.bam` assets.
+  specular color) — a compatibility shim relevant when debugging lighting
+  differences between old and new `.bam` assets.
 
 ## API
 

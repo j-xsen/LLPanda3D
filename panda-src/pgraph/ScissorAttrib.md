@@ -6,14 +6,14 @@
 Restricts rendering to a rectangular region within the enclosing
 `DisplayRegion`, in screen space — akin to OpenGL's `glScissor()`. Geometry
 outside the region isn't rendered, but it also isn't *culled* (the cull
-traversal still visits it; the GSG just clips pixels at rasterization
-time), and the viewport/lens are unaffected.
+traversal still visits it; the GSG clips pixels at rasterization
+time instead), and the viewport/lens are unaffected.
 
 **Distinct from [ScissorEffect](ScissorEffect.md):** `ScissorEffect`
 defines its region relative to 2-D/3-D scene-graph coordinates and *does*
 participate in culling; `ScissorAttrib` is a flat screen-space rectangle
-with no culling interaction. Use `ScissorAttrib` for a fixed on-screen
-clip region (e.g. split-screen), `ScissorEffect` for a region tied to
+with no culling interaction. `ScissorAttrib` suits a fixed on-screen
+clip region (e.g. split-screen); `ScissorEffect` suits a region tied to
 something in the scene.
 
 ## Behavior notes
@@ -24,7 +24,7 @@ something in the scene.
 - `compose_impl()`: composing two on `ScissorAttrib`s **intersects** their
   frames (`max` of left/bottom, `min` of right/top) rather than the usual
   "downstream wins" — one of the few attribs (with `RenderModeAttrib`'s
-  `M_unchanged`) that doesn't simply replace on compose. An off attrib
+  `M_unchanged`) that doesn't replace outright on compose. An off attrib
   composed with anything yields the other attrib unchanged.
 - `make_off()`/`make_default()` share one memoized static instance
   (`_off_attrib`); `make_default()` is literally `return make_off();`.

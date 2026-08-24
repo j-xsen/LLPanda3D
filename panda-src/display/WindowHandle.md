@@ -21,8 +21,8 @@ request keyboard focus from the parent.
   defined by `NativeWindowHandle` (below). This split is what lets
   `WindowHandle` stay a single non-templated type usable uniformly by
   `WindowProperties`/`GraphicsWindow` regardless of platform.
-- **You never construct a `WindowHandle` directly in normal code** — the
-  header explicitly says to use one of `NativeWindowHandle`'s `make_*()`
+- **A `WindowHandle` is never constructed directly in normal code** — the
+  header explicitly calls for one of `NativeWindowHandle`'s `make_*()`
   factory methods instead; `NativeWindowHandle`'s own constructors are
   `private`, and it exists (per its header comment) "for name scoping
   only."

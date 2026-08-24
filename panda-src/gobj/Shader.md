@@ -4,11 +4,11 @@
 **Inherits:** TypedWritableReferenceCount **Inherited by:** (none)
 
 A compiled shader program — vertex/fragment/geometry/tessellation/compute
-stages, in Cg, GLSL, HLSL, or SPIR-V. You load one with `Shader::load()`
-(one file per language variant, or separate files per stage) or build one
-from in-memory source with `Shader::make()`, then apply it to geometry via
+stages, in Cg, GLSL, HLSL, or SPIR-V. Loaded via `Shader::load()`
+(one file per language variant, or separate files per stage) or built
+from in-memory source with `Shader::make()`, then applied to geometry via
 `ShaderAttrib` (`pgraph`, see [../pgraph/README.md](../pgraph/README.md))
-rather than binding it directly. The GSG turns a `Shader` into a backend
+rather than bound directly. The GSG turns a `Shader` into a backend
 program object on demand through a `ShaderContext` — see
 [ShaderContext.md](ShaderContext.md) and the module README's
 "`PreparedGraphicsObjects` / `*Context` handshake" section for that

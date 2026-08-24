@@ -7,8 +7,8 @@ The root node of a PG hierarchy. Every [PGItem](PGItem.md) must be parented
 somewhere below a `PGTop` node to receive mouse/keyboard events — items outside
 a `PGTop` subtree still render but are never clickable. In a standard
 `ShowBase` setup, `aspect2d` (and `render2d`/`pixel2d` if used for GUI) is
-already a `PGTop`; you only construct one directly when building a scene graph
-by hand.
+already a `PGTop`; one is constructed directly only when building a scene
+graph by hand.
 
 ## Behavior notes
 
@@ -31,8 +31,8 @@ by hand.
 - **`start_sort`** offsets the sort value assigned to the first `PGItem`
   discovered during traversal (subsequent items get consecutively higher
   values), which controls click priority ordering among overlapping regions
-  independent of a second `PGTop`'s items. Leave at the default `0` unless you
-  have multiple `PGTop`s that need a specific relative click order.
+  independent of a second `PGTop`'s items. Left at the default `0` unless
+  multiple `PGTop`s need a specific relative click order.
 
 ## API
 

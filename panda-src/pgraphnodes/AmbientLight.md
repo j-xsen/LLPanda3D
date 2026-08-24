@@ -5,7 +5,7 @@
 
 A light source that illuminates every point in the scene equally,
 regardless of position or surface orientation — no direction, no falloff,
-just a flat color contribution added everywhere `LightAttrib` enables it.
+only a flat color contribution added everywhere `LightAttrib` enables it.
 Because it has no meaningful position, an `AmbientLight` doesn't
 technically need to be parented into the scene graph at all (though it
 usually is, for consistency with other lights and to control its
@@ -16,10 +16,10 @@ color/priority through the graph like anything else).
 - **`bind()` deliberately raises an assertion** (`nassert_raise("cannot
   bind AmbientLight")`) rather than doing anything — ambient light has no
   per-light GPU binding slot the way positional/directional lights do
-  (`GraphicsStateGuardian::bind_light()`); its color is simply summed into
-  the overall scene ambient term. If you ever see this assertion fire, it
-  indicates a bug in the light-binding code trying to treat an
-  `AmbientLight` like a bindable light.
+  (`GraphicsStateGuardian::bind_light()`); its color is instead summed into
+  the overall scene ambient term. This assertion firing indicates a bug in
+  the light-binding code attempting to treat an `AmbientLight` like a
+  bindable light.
 - **`get_class_priority()` returns the lowest of all light types**
   (`CP_ambient_priority`) — used only to break ties when two lights have
   equal explicit `get_priority()`; all else equal, ambient lights are

@@ -20,9 +20,9 @@ etc., none of which live in `gobj`).
   `update_shader_buffer_bindings()`, …) defaults to a no-op or trivial
   return in the base class — this is a pure extension-point class, not
   one with meaningful shared behavior of its own. Reading this header
-  alone tells you the *shape* of the shader-binding lifecycle (set
+  alone reveals the *shape* of the shader-binding lifecycle (set
   state/transform → bind → issue parameters → update vertex/texture/
-  buffer bindings → unbind) but none of the actual work; that's all in
+  buffer bindings → unbind) but none of the actual work; that is all in
   the per-backend subclass.
 - `uses_standard_vertex_arrays()` defaults `true` / `uses_custom_vertex_arrays()`
   defaults `false` — a backend overrides these together when its shader

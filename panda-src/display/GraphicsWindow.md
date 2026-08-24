@@ -178,7 +178,7 @@ real `TouchInfo` values indexed `0..get_num_touches()-1`.
 ## Usage
 
 ```cpp
-// Normally you never construct a GraphicsWindow directly:
+// A GraphicsWindow is normally never constructed directly:
 GraphicsWindow *win = DCAST(GraphicsWindow, engine->make_output(pipe, "win", 0,
     fb_props, win_props, GraphicsPipe::BF_require_window));
 

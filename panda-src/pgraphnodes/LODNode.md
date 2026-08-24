@@ -5,9 +5,9 @@
 
 A Level-of-Detail node: it selects exactly one of its children for
 rendering, based on the distance from the camera to a configurable center
-point and a per-child in/out switch-distance range. Use it by parenting one
-model variant per detail level as a child, then calling `add_switch()` once
-per child (in the same order as the children) to define each level's
+point and a per-child in/out switch-distance range. It is used by parenting
+one model variant per detail level as a child, then calling `add_switch()`
+once per child (in the same order as the children) to define each level's
 visible-distance range.
 
 ## `LODNodeType`
@@ -22,7 +22,7 @@ visible-distance range.
 
 ## Behavior notes
 
-- **"In" vs. "out" is reversed from what you'd guess.** Switch ranges are
+- **"In" vs. "out" is reversed from the intuitive guess.** Switch ranges are
   named as if the object were approaching from far away: a level switches
   **in** at the *far* (larger) distance and **out** at the *close* (smaller)
   distance, so `in` must be `>= out` for a given `add_switch(in, out)` call.
@@ -33,13 +33,13 @@ visible-distance range.
   computes the camera-relative distance to `_center`, walks every switch
   range, and directly calls `trav->traverse()` on any child whose range
   contains that distance (normally exactly one, but nothing stops multiple
-  or zero switch ranges from overlapping/gapping — that's on you to get
-  right).
+  or zero switch ranges from overlapping/gapping — getting the ranges right
+  is the caller's responsibility).
 - **Distance is computed relative to the `Camera`'s `lod_center`/
   `cull_center`, not the actual viewpoint**, if either is set (falls back to
   the ordinary modelview transform otherwise) — see `get_rel_transform()`.
-  This lets you drive LOD switching from a fixed reference point instead of
-  a moving camera, e.g. for reproducible screenshots.
+  This allows LOD switching to be driven from a fixed reference point
+  instead of a moving camera, e.g. for reproducible screenshots.
 - **`get_lod_scale()`/`set_lod_scale()` multiplies the *comparison*
   distance**, not the switch ranges themselves — a higher scale makes
   levels switch at farther apparent distances (more detail shown farther
@@ -72,8 +72,8 @@ visible-distance range.
 
 ## API
 
-**Switch range management** (index-parallel to children — add ranges in
-the same order you parent children):
+**Switch range management** (index-parallel to children — ranges must be
+added in the same order children are parented):
 
 | Method | Notes |
 |---|---|

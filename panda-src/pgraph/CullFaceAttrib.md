@@ -17,7 +17,7 @@ viewed from the front, so `M_cull_clockwise` culls backfaces.
 - `M_cull_unchanged` is the identity mode: composing it with a preceding
   attrib keeps the preceding mode (see `compose_impl`).
 - `compose_impl`: in the common case (`this` isn't reversing and `other`
-  specifies a real mode), `other` simply replaces `this`. Otherwise mode
+  specifies a real mode), `other` replaces `this` directly. Otherwise mode
   and reverse-ness combine: `other`'s mode wins if it's not
   `M_cull_unchanged`, else `this`'s mode carries through; the two
   `_reverse` flags XOR together. `invert_compose_impl` mirrors this with

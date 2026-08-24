@@ -9,7 +9,7 @@ Carries a node's `Shader` selection (explicit shader, auto-generated
 shader, or none), per-name `ShaderInput` bindings passed to that shader,
 instancing count, and a handful of boolean render flags. One of the more
 complex attribs — it accumulates state incrementally down the scene graph
-by merging inputs/flags rather than simply replacing them on compose.
+by merging inputs/flags rather than replacing them outright on compose.
 `Shader`/`ShaderInput` are also defined in `panda/src/pgraph`
 ([ShaderInput](ShaderInput.md), documented separately in this module);
 `ShaderPool` caches loaded `Shader` objects.

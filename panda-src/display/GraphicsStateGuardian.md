@@ -81,8 +81,8 @@ The abstract base class ("GSG") that owns all communication with one instance of
   mechanical `switch` over `Shader::ShaderMatInput`/`ShaderTexInput` enum
   values (matrix composition, light parameter packing, coordinate-space
   conversions) — treated here as an internal implementation detail rather
-  than documented input-by-input; if you need to know what a specific
-  `SMO_*`/`STO_*` value resolves to, read the `switch` directly.
+  than documented input-by-input; determining what a specific `SMO_*`/`STO_*`
+  value resolves to requires reading the `switch` directly.
 - **Decal rendering is a three-pass protocol** (`depth_offset_decals()` lets
   a GSG opt out in favor of a single-pass `DepthOffsetAttrib` approach
   instead): `begin_decal_base_first()` returns a `RenderState` that disables

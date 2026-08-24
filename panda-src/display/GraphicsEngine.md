@@ -4,8 +4,8 @@
 **Inherits:** ReferenceCount **Inherited by:** (none)
 
 The top-level object that drives rendering. An application normally owns
-exactly one `GraphicsEngine` (though multiple are legal if you need separate
-synchronicity groups); it creates every `GraphicsOutput` (window or buffer)
+exactly one `GraphicsEngine` (though multiple are legal when separate
+synchronicity groups are needed); it creates every `GraphicsOutput` (window or buffer)
 via `make_output()`, and a single call to `render_frame()` culls, draws, and
 (depending on settings) flips every registered window for that frame. It
 also owns the optional cull/draw threading pipeline. `PandaFramework` wraps
@@ -42,11 +42,11 @@ exactly one of these — see [../framework/PandaFramework.md](../framework/Panda
 - **`make_buffer()` has two overloads with different sharing behavior**
   (documented in `.I`, easy to miss from the header alone): the
   `GraphicsOutput*` (host window) overload adapts to the host's existing
-  framebuffer properties and is the "preferred" way to make an offscreen
-  buffer once you already have a window — it maximizes resource sharing.
+  framebuffer properties and is the preferred way to create an offscreen
+  buffer when a window already exists; it maximizes resource sharing.
   The `GraphicsStateGuardian*` overload builds its own `FrameBufferProperties`
   from scratch (forcing off back buffers, stereo, accum, multisamples,
-  forced-hardware/software) and should only be used when there is no
+  forced-hardware/software) and is intended for use only when there is no
   existing window to piggyback on — it does a "poorer job of sharing the
   GSG."
 - **`render_frame()`'s per-frame sequence** (all under `_public_lock`, so
@@ -98,7 +98,7 @@ exactly one of these — see [../framework/PandaFramework.md](../framework/Panda
   GSG with no more windows can outlive its last window by up to one frame.
 - **`extract_texture_data()`, `dispatch_compute()`, and
   `do_get_screenshot()` all use the same "borrow the draw thread"
-  pattern**: in a single-threaded setup they just call straight through; in
+  pattern**: in a single-threaded setup they call straight through directly; in
   a multithreaded setup they grab the relevant `RenderThread`'s condition
   variable, wait for it to be `TS_wait` (idle between frames), temporarily
   reassign its pipeline stage to the calling thread's stage, signal a
@@ -123,8 +123,8 @@ exactly one of these — see [../framework/PandaFramework.md](../framework/Panda
   `nullptr`, which causes that `DisplayRegion` to be skipped for the frame
   entirely.
 - **An inverted window flips more than pixels.** When
-  `GraphicsOutput::get_inverted()` is true, `setup_scene()` doesn't just set
-  `SceneSetup::set_inverted(true)`; it also composes the camera's
+  `GraphicsOutput::get_inverted()` is true, `setup_scene()` does more than
+  set `SceneSetup::set_inverted(true)`: it also composes the camera's
   `initial_state` with a global cached "invert polygon winding" `RenderState`
   (`get_invert_polygon_state()`, a `CullFaceAttrib::make_reverse()`,
   memoized forever once first requested) — necessary because flipping the
@@ -136,7 +136,7 @@ exactly one of these — see [../framework/PandaFramework.md](../framework/Panda
   still participates in clearing but whose actual left/right eye rendering
   happens through separate constituent `DisplayRegion`s.
 - **A `DisplayRegion`'s cull/draw callback fully replaces the normal cull or
-  draw step**, not just decorates it — if `DisplayRegion::get_cull_callback()`
+  draw step**, not only decorates it — if `DisplayRegion::get_cull_callback()`
   / `get_draw_callback()` returns non-null, `GraphicsEngine` invokes the
   `CallbackObject` instead of running `CullTraverser`/`CullResult::draw()`.
   Before invoking a draw callback it explicitly resets the GSG's state to

@@ -5,9 +5,9 @@
 
 Internal plumbing — the `MouseWatcherRegion` every [PGItem](PGItem.md) owns
 exactly one of, created in the `PGItem` constructor and never changing
-identity for that item's lifetime (`PGItem::get_region()`). You'll interact
-with it only indirectly through `PGItem`'s API (`get_id()`/`set_id()` actually
-read/write this object's `MouseWatcherRegion` name;
+identity for that item's lifetime (`PGItem::get_region()`). Application code
+interacts with it only indirectly through `PGItem`'s API (`get_id()`/`set_id()`
+actually read/write this object's `MouseWatcherRegion` name;
 `set_suppress_flags()`/`get_suppress_flags()` pass straight through to it).
 
 ```cpp
@@ -15,7 +15,7 @@ class PGMouseWatcherRegion : public MouseWatcherRegion {
 public:
   PGMouseWatcherRegion(PGItem *item);
   // overrides enter_region/exit_region/within_region/without_region/
-  // press/release/keystroke/candidate/move — each simply forwards to
+  // press/release/keystroke/candidate/move — each forwards to
   // the owning PGItem's identically-named method (with background=false
   // for press/release/keystroke/candidate).
 private:
@@ -26,7 +26,7 @@ private:
 
 The default region (and hence event-id) name is `"pg" + _next_index++` — a
 simple global counter, not derived from the item's node name. This is what
-`PGItem::get_id()` returns before you call `set_id()`.
+`PGItem::get_id()` returns before `set_id()` is called.
 
 ## See also
 

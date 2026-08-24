@@ -5,8 +5,8 @@
 
 Represents a texture object: typically a single 2-D image, but also a 1-D
 strip, a 3-D volume, a 2-D array, a cube map (6 faces), a cube map array, a
-1-D array, or a raw buffer texture (`TextureType`). This is the class you
-touch for almost anything texture-related in Panda — loading from disk
+1-D array, or a raw buffer texture (`TextureType`). This is the class used
+for almost anything texture-related in Panda — loading from disk
 (`read()`), building procedurally (`setup_2d_texture()` + `set_ram_image()`),
 querying dimensions/format, or handing off to the GPU (`prepare()`). It is
 the single largest class in the `gobj` module (~14.5k lines across
@@ -21,14 +21,14 @@ the single largest class in the `gobj` module (~14.5k lines across
   → GPU upload → RAM image freed. Freeing happens in `texture_uploaded()`
   (called by `GraphicsEngine` the frame after a successful upload), and only
   if both the global `keep-texture-ram` config var and the per-texture
-  `set_keep_ram_image()` flag are false. If you then call `get_ram_image()`
-  again on a texture that was loaded from a file, it transparently
-  re-reads the file from disk — `has_ram_image()` tells you only whether
+  `set_keep_ram_image()` flag are false. A subsequent call to `get_ram_image()`
+  on a texture loaded from a file transparently
+  re-reads the file from disk — `has_ram_image()` indicates only whether
   that reload would be needed, not whether it would fail.
 - **Lock-free-ish reload (`unlocked_ensure_ram_image()`):** when a RAM-image
   reload is needed, Panda does *not* hold the texture's own mutex during the
   (potentially slow) disk read. It makes a full `Texture` copy, releases its
-  own lock, reloads into the copy, then re-acquires the lock and merges just
+  own lock, reloads into the copy, then re-acquires the lock and merges only
   the RAM-image-relevant fields back into `this` — guarded by a `_reloading`
   flag + condition variable so concurrent callers block and wait rather than
   double-reload. If, during that reload, fundamental properties changed
@@ -42,15 +42,14 @@ the single largest class in the `gobj` module (~14.5k lines across
   `RenderState`/`TransformState` in `pgraph`. `PUBLISHED` methods are thin
   wrappers; the real logic lives in the parallel `do_*` methods that take an
   explicit `CData *`.
-- **`prepare()` vs. `prepare_now()`:** `prepare()` just enqueues the texture
+- **`prepare()` vs. `prepare_now()`:** `prepare()` enqueues the texture
   on the `PreparedGraphicsObjects`' async queue for upload at the start of
   the next frame (fire-and-forget, returns an `AsyncFuture`); `prepare_now()`
   synchronously creates/returns the `TextureContext` immediately, called
   internally by the GSG at draw time if the texture wasn't already prepared.
 - **`~Texture()` calls `release_all()`** — every `TextureContext` this
   texture holds across every `PreparedGraphicsObjects` it was prepared into
-  is released automatically on destruction; you don't need to do this
-  yourself.
+  is released automatically on destruction; explicit release is unnecessary.
 - **`load_related()` caches its result per suffix** in a private
   `_related_textures` map (e.g. so repeatedly asking for the `_normal`- or
   `_gloss`-suffixed sibling of a diffuse map only hits `TexturePool` once).
@@ -63,13 +62,13 @@ the single largest class in the `gobj` module (~14.5k lines across
   excluded or the request is for padding-size calculation only, in which
   case `ATS_pad` is treated as `ATS_none`. `get_tex_scale()` gives back the
   UV scale factor to compensate for any padding added this way.
-- **`is_cacheable()`** is defined as "has enough info to write to the bam
-  cache" — in practice, has a RAM image (or raw bam data), *not* simply
-  "was successfully loaded."
+- **`is_cacheable()`** is defined as having enough information to write to
+  the bam cache — in practice, having a RAM image (or raw bam data), not
+  merely having been loaded successfully.
 - **Deprecated filter/wrap enums:** `DeprecatedFilterType`/
   `DeprecatedWrapMode` and the `FilterType`/`WrapMode` typedefs exist purely
   as aliases into [SamplerState](SamplerState.md)'s enums — `Texture` no
-  longer owns filtering/wrap semantics itself, it just forwards to an
+  longer owns filtering/wrap semantics itself, it forwards to an
   internal `_default_sampler` (a `SamplerState`) for every
   wrap/filter/anisotropy/border-color getter/setter.
 

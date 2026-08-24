@@ -18,8 +18,8 @@ public:
 };
 ```
 
-You'd construct one and register it with a `MouseWatcher` (e.g.
-`watcher->add_region(new PGMouseWatcherBackground)`) only if you're wiring up
+This is constructed and registered with a `MouseWatcher` (e.g.
+`watcher->add_region(new PGMouseWatcherBackground)`) only when wiring up
 a `MouseWatcher` by hand outside the normal `ShowBase`/`PGTop` setup; Panda's
 default application setup already has an equivalent path so background-focus
 `PGItem`s work out of the box.

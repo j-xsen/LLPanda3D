@@ -13,13 +13,13 @@ per camera during traversal.
 
 ## Behavior notes
 
-- The constructor is `protected` — you're expected to subclass and add
+- The constructor is `protected` — subclasses are expected to add
   actual payload data; a plain `AuxSceneData` carries nothing but the
   expiration bookkeeping below.
 - **Expiration model**: `set_duration(seconds)` sets how long to keep the
   object around after it was last touched; `set_last_render_time(now)` is
   called each time it's used during traversal; `get_expiration_time()` is
-  simply `_last_render_time + _duration`. [`Camera::cleanup_aux_scene_data()`](Camera.md)
+  `_last_render_time + _duration`. [`Camera::cleanup_aux_scene_data()`](Camera.md)
   sweeps its `NodePath → AuxSceneData` map each call, comparing
   `get_expiration_time()` against the global clock and erasing anything
   past due — this class itself does no sweeping; it's purely passive data

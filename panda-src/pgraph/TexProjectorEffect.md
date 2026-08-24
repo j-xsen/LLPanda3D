@@ -24,7 +24,7 @@ image-based shadow projected onto walls. Source: `panda/src/mathutil` for
   the "to" node's lens projection matrix if it's a `LensNode`) is computed
   and applied as a `TexMatrixAttrib` for that `TextureStage`.
 - **Typical simple use:** a standalone `PandaNode` (not necessarily in the
-  visible graph) that you animate (e.g. via a `LerpInterval`) purely to
+  visible graph) that is animated (e.g. via a `LerpInterval`) purely to
   drive an object's texture-coordinate transform, avoiding an explicit
   per-frame `NodePath::set_tex_transform()` call.
 - **Advanced use, per the header doc:** combine with a `TexGenAttrib` set

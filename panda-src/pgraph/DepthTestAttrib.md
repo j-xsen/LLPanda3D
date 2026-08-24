@@ -17,8 +17,8 @@ function.
   [AlphaTestAttrib](AlphaTestAttrib.md) (`M_never` .. `M_always`).
 - `make_default()`'s implicit constructor default is `M_less` — standard
   "closer wins" depth testing.
-- No custom `compose_impl` — later attrib in the graph simply replaces the
-  earlier one (default `RenderAttrib` behavior).
+- No custom `compose_impl` — a later attrib in the graph replaces the
+  earlier one directly (default `RenderAttrib` behavior).
 
 ## API
 

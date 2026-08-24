@@ -14,7 +14,7 @@ hand at runtime.
 ## Behavior notes
 
 - **Lazy sort, not eager.** `add_anim()` and `add_anims_from()` push into an
-  `ov_set` and just set `_needs_sort = true`; every read accessor
+  `ov_set` and set `_needs_sort = true`; every read accessor
   (`get_basename()`, `get_base_frame_rate()`, `get_num_frames()`,
   `output()`, `write()`, `write_datagram()`) calls `consider_sort()` first,
   which re-sorts (by basename, alphabetically) only if the flag is set. Bulk
@@ -23,9 +23,9 @@ hand at runtime.
 - **`add_anim()` does not check for or replace duplicates** — the header
   comment on `find_anim()` explains lookup, but `add_anim()` itself has no
   dedup check in its own doc comment; a second `add_anim()` call with the
-  same basename simply inserts a second entry into the underlying `ov_set`
-  (an ordered vector, not a true set keyed for uniqueness here). Check
-  `find_anim()` first if you need replace-not-append semantics.
+  same basename inserts a second entry into the underlying `ov_set`
+  (an ordered vector, not a true set keyed for uniqueness here). Replace-not-append
+  semantics require calling `find_anim()` first.
 - **`add_anims_from()` says "the record in this one supersedes"** in a
   duplicate-name conflict, per its doc comment — in practice this depends on
   `ov_set`'s insert/sort behavior when duplicate keys exist after the next
@@ -36,8 +36,8 @@ hand at runtime.
   passed to `add_anim()`/`find_anim()`.
 - **Index numbers are invalidated by mutation.** `add_anim()`,
   `remove_anim()`, and `add_anims_from()` all can reorder the underlying
-  sorted vector; don't cache an index across a call that adds or removes a
-  record.
+  sorted vector; an index must not be cached across a call that adds or
+  removes a record.
 
 ## API
 

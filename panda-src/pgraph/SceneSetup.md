@@ -8,7 +8,7 @@ A plain-data snapshot of everything needed to render one scene through one camer
 ## Behavior notes
 
 - Almost entirely a getter/setter bag — the only non-trivial logic is `get_cull_center()` and `get_cull_bounds()`:
-  - `get_cull_center()` returns `Camera::get_cull_center()` if the camera has one set (lets you cull as if viewed from a different point than the actual camera, e.g. a wider "cull frustum" for temporal effects), falling back to the actual `_camera_path`.
+  - `get_cull_center()` returns `Camera::get_cull_center()` if the camera has one set (allows culling as if viewed from a different point than the actual camera, e.g. a wider "cull frustum" for temporal effects), falling back to the actual `_camera_path`.
   - `get_cull_bounds()` similarly prefers `Camera::get_cull_bounds()` if overridden, otherwise derives bounds from the `Lens` (`_lens->make_bounds()`).
 - The default constructor pre-fills `_initial_state` to `RenderState::make_empty()` and all four transform fields to `TransformState::make_identity()`, so a freshly-constructed `SceneSetup` is safe to query before every field is explicitly set.
 - `_camera_transform`/`_world_transform` are inverses of each other (camera-relative-to-root vs. root-relative-to-camera); `_cs_transform`/`_cs_world_transform` are the same pair further composed with the transform into the GSG's internal coordinate system (left- vs. right-handed, Y-up vs. Z-up, as configured per-GSG).

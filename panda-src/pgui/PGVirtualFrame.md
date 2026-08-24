@@ -9,14 +9,14 @@ A window onto an arbitrarily large "virtual canvas": anything parented under
 `ScissorEffect`, and can be scrolled by changing `canvas_transform` (a plain
 translate/scale/rotate on the canvas node). This is the low-level clipping
 mechanism; [PGScrollFrame](PGScrollFrame.md) builds the familiar "scroll bars +
-auto-hide + drag" behavior on top of it and is what you'd normally use
+auto-hide + drag" behavior on top of it and is what is normally used
 directly.
 
 ## Behavior notes
 
 - **Two extra child nodes are always present**, created in the constructor:
   `canvas_parent` (holds the `ScissorEffect`) → `canvas_node` (translate freely
-  via `canvas_transform`; this is where your scrollable content goes). Both are
+  via `canvas_transform`; this is where scrollable content is parented). Both are
   `ModelNode`s with `PT_local` preserve-transform, so copying/flattening the
   scene graph won't collapse their transforms into neighbors.
   `get_canvas_parent()` exists mainly for the copy/instance machinery; content
@@ -34,7 +34,7 @@ directly.
 - **Copying (`make_copy()` / scene-graph copy) correctly re-links the new
   copy's `canvas_node`/`canvas_parent`** via `r_copy_children()`'s use of the
   copy's `InstanceMap`, and reapplies the clip frame's `ScissorEffect` on the
-  new parent node — you don't need to manually fix this up after copying a
+  new parent node — no manual fix-up is needed after copying a
   `PGVirtualFrame` subtree.
 
 ## API
@@ -56,7 +56,7 @@ directly.
 | Signature | Notes |
 |---|---|
 | `void set_canvas_transform(const TransformState*)` / `const TransformState *get_canvas_transform() const` | Scroll position/scale of the virtual canvas |
-| `PandaNode *get_canvas_node() const` | Parent your scrollable content here |
+| `PandaNode *get_canvas_node() const` | Scrollable content is parented here |
 | `PandaNode *get_canvas_parent() const` | Rarely needed directly |
 
 ### Hook

@@ -8,7 +8,7 @@ subclass a fixed slot index (0–31, capped by `_max_slots = 32` since slots
 are tracked via a `BitMask32` = `SlotMask`) at static-init time, so
 [RenderState](RenderState.md) can store attribs in a fixed-size array and
 test presence with a bitmask instead of a hash lookup. Application code
-essentially never touches this directly — it's plumbing behind
+rarely touches this directly — it's plumbing behind
 `RenderAttrib::register_slot()` (called once per subclass, typically from
 that subclass's `init_type()`) and `RenderState::get_attrib(TypeHandle)`.
 

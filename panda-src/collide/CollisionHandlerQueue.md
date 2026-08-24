@@ -4,7 +4,7 @@
 **Inherits:** [CollisionHandler](CollisionHandler.md)
 
 "Does nothing except remember the CollisionEntries detected the last pass."
-No events, no physics — just a flat list you poll afterward.
+No events, no physics — a flat list polled afterward.
 "It's primarily useful when a simple intersection test is being made, e.g.
 for picking from the window" — the standard mouse-picking handler, paired
 with a [CollisionRay](CollisionRay.md).
@@ -15,8 +15,8 @@ with a [CollisionRay](CollisionRay.md).
   until the next `begin_group()`.** So after `traverse()`, the queue holds
   exactly this pass's hits — no in/again/out diffing like
   [CollisionHandlerEvent](CollisionHandlerEvent.md).
-- **Entries are in arbitrary (traversal) order until you call
-  `sort_entries()`**, which orders them front-to-back by distance from the
+- **Entries are in arbitrary (traversal) order until `sort_entries()` is
+  called**, which orders them front-to-back by distance from the
   *from* solid's origin — call it before assuming `get_entry(0)` is the
   closest hit (the standard mouse-picking pattern).
 

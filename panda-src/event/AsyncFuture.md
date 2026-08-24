@@ -9,7 +9,7 @@ which can be waited on, polled, cancelled, or have a callback/event fired when
 it resolves. Mirrors Python's `concurrent.futures.Future` / `asyncio.Future`
 API closely (per the header, "This API aims to mirror and be compatible with
 Python's Future class"). [AsyncTask](AsyncTask.md) *is* an `AsyncFuture` (a
-task's completion is itself a future you can await), and
+task's completion is itself a future that can be awaited), and
 [EventHandler::get_future()](EventHandler.md) returns one that resolves when a
 named event fires — this is the bridge between the event system and the task
 system.
@@ -40,10 +40,10 @@ system.
   the extra complexity unless we're sure that we need it").
 - **`gather(futures)` has three distinct fast paths**: empty list → an
   already-finished future; single-element list → that exact future object
-  (not wrapped); 2+ → a real `AsyncGatheringFuture`. Don't assume
-  `gather({single_future})` returns a *new* object — it returns
+  (not wrapped); 2+ → a real `AsyncGatheringFuture`.
+  `gather({single_future})` does not return a *new* object — it returns
   `single_future` itself.
-- **`set_result()` overloads pick the ref-counting story for you** —
+- **`set_result()` overloads determine the ref-counting story automatically** —
   `set_result(TypedObject*)` alone holds no extra reference (the caller must
   keep it alive), while the `TypedReferenceCount*`/`TypedWritableReferenceCount*`/
   `EventParameter` overloads also stash a `PT(ReferenceCount)` so the future

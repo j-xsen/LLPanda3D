@@ -5,9 +5,9 @@
 
 A thread-safe FIFO of pending [Event](Event.md)s. [throw_event()](throw_event.md)
 pushes onto the global queue; [EventHandler::process_events()](EventHandler.md)
-pops everything off and dispatches it. You'll rarely touch an `EventQueue`
-directly beyond `get_global_event_queue()` — it exists as its own class mainly
-so alternate/isolated event pipelines are possible.
+pops everything off and dispatches it. Application code rarely touches an
+`EventQueue` directly beyond `get_global_event_queue()` — it exists as its
+own class mainly so alternate/isolated event pipelines are possible.
 
 ## Behavior notes
 
@@ -36,7 +36,7 @@ so alternate/isolated event pipelines are possible.
 ## Usage
 
 ```cpp
-// Draining manually (normally EventHandler::process_events() does this for you):
+// Draining manually (normally EventHandler::process_events() handles this automatically):
 EventQueue *q = EventQueue::get_global_event_queue();
 while (!q->is_queue_empty()) {
   CPT_Event event = q->dequeue_event();

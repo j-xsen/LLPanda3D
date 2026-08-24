@@ -6,7 +6,7 @@
 
 Abstract base for textures whose image content is decoded from a video
 stream frame-by-frame rather than loaded once from a still image. Protected
-constructors — you never instantiate `VideoTexture` directly, only a
+constructors — `VideoTexture` is never instantiated directly, only a
 concrete subclass like `MovieTexture`. Playback is controlled through the
 inherited `AnimInterface` (`play()`/`stop()`/`loop()`/`set_frame_rate()`,
 etc.), same API shape as a character's `AnimControl`.

@@ -9,9 +9,9 @@ Defines the physical layout of the vertex data stored within a
 [GeomVertexArrayFormat](GeomVertexArrayFormat.md)s, each of which in turn
 lists the named columns (`InternalName`s — see [InternalName](InternalName.md))
 physically packed into that array. A column name must be unique across the
-whole format, even between different arrays. You touch this class whenever
-you build custom vertex data (choosing which attributes a mesh carries and
-how they're packed) — most code, however, just uses one of the built-in
+whole format, even between different arrays. This class is used for
+constructing custom vertex data (choosing which attributes a mesh carries and
+how they're packed) — most code, however, uses one of the built-in
 stock formats.
 
 ## Behavior notes
@@ -51,7 +51,7 @@ stock formats.
   format encodes vertex animation. `get_post_animated_format()` returns the
   equivalent format *after* CPU-side animation has been applied (animation-
   specific columns like `transform_blend`/`transform_index`/`transform_weight`
-  stripped out, since post-animation the result is just static `C_point`/
+  stripped out, since post-animation the result is static `C_point`/
   `C_normal`/`C_vector` data).
 - **`get_union_format()`** computes a new registered format that is the
   superset of this format and another — used when merging geometry with

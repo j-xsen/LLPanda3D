@@ -21,9 +21,9 @@ controlled by its collide masks.
   Ordinary `GeomNode`s default their `into_collide_mask` to bit 20
   (`default_geom_node_collide_mask`) — one bit above the reserved
   `CollisionNode` range, unassigned by default, so a fresh `CollisionNode`
-  won't accidentally collide against plain scene geometry until you opt in
-  by widening its `from_collide_mask` to include bit 20 (or higher, for
-  your own custom bits). `set_collide_mask(mask)` sets both at once.
+  will not accidentally collide against plain scene geometry until its
+  `from_collide_mask` is widened to include bit 20 (or higher, for custom
+  bits). `set_collide_mask(mask)` sets both at once.
 - **`get_legal_collide_mask()` returns `CollideMask::all_on()`** — unlike a
   `GeomNode`, a `CollisionNode` is not restricted to a narrower legal range.
 - **`collider_sort` controls traversal ordering among colliders sharing one

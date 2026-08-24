@@ -45,11 +45,11 @@ singleton accessor.
   but the recommendation function is missing/returns a bogus type index, the
   module is still kept loaded (can't be safely unloaded, "because it may
   have assigned itself into the `GraphicsPipeSelection` table" per the
-  source comment) — you just get a warning and `TypeHandle::none()`.
+  source comment) — only a warning and `TypeHandle::none()` result.
 - **`make_pipe(TypeHandle)` matches exact type first, then any more-derived
   type** (`is_derived_from`), and only loads the default module and retries
   if nothing at all matched — so requesting a base type can transparently
-  get you whatever more-specific subclass is actually registered.
+  resolve to whatever more-specific subclass is actually registered.
 - **`make_default_pipe()`'s name-matching is deliberately loose**: exact
   case/hyphen-underscore-insensitive match on `_default_pipe_name` first
   (from `load-display`'s second word), then falls back to a case-insensitive

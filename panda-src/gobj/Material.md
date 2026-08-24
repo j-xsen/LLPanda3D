@@ -29,7 +29,7 @@ from either `shininess` (specular exponent) or a perceptually-linear
   base color), `_diffuse` (= `base_color * (1 - metallic)`), and
   `_specular` (Fresnel-`f0`-from-`refractive_index` blended with
   `base_color * metallic`) — so setting base color silently discards any
-  previously explicit ambient/diffuse/specular you'd set. The two
+  previously explicit ambient/diffuse/specular value. The two
   workflows are not meant to be mixed field-by-field.
 - **`get_base_color()` falls back to `_diffuse`** when neither base color
   nor metallic has been explicitly set — so reading base color on a
@@ -49,9 +49,10 @@ from either `shininess` (specular exponent) or a perceptually-linear
   1.10 API). Net effect: `mark_used_by_auto_shader()` never actually
   causes `is_used_by_auto_shader()` to return true, so a mutation on a
   `Material` already consumed by the shader generator may not trigger a
-  shader regeneration through this path — check for `set_attrib_lock()`
-  being called elsewhere (e.g. from the shader generator itself) if you
-  hit stale-generated-shader symptoms after mutating a live `Material`.
+  shader regeneration through this path — worth checking whether
+  `set_attrib_lock()` is called elsewhere (e.g. from the shader generator
+  itself) when stale-generated-shader symptoms appear after mutating a
+  live `Material`.
 - **`get_default()`** lazily allocates one shared default `Material`
   named `"default"` on first call and reuses it — comparable to
   `SamplerState::get_default()`.

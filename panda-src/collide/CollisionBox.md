@@ -8,7 +8,7 @@ min/max corners) at construction time. Internally built from 6
 [CollisionPolygon](CollisionPolygon.md)-style planes with cached 2D
 projections per face, reusing the same point-in-polygon/clip machinery as
 `CollisionPolygon` (see `PointDef`/`Points`/`clip_polygon()` in the header —
-essentially a specialized 6-faced polygon solid, not a simple analytic-only
+effectively a specialized 6-faced polygon solid, not a simple analytic-only
 box test).
 
 ## Behavior notes
@@ -17,7 +17,7 @@ box test).
   axis-aligned to world space afterward** — `xform()` transforms the box's 8
   cached vertices and 6 planes like any other solid, so a rotated
   `CollisionNode` produces a rotated (oriented) box, not an AABB that gets
-  re-fit. If you want an always-axis-aligned box, keep the owning node
+  re-fit. An always-axis-aligned box requires the owning node to remain
   unrotated.
 - **Supports being a *from* solid against sphere, line, ray, segment,
   capsule, and box** — same broad connectivity as

@@ -39,9 +39,9 @@ appropriate [CollisionHandler](CollisionHandler.md).
   is defined** (the usual default for non-release builds). `show_collisions(root)`
   attaches a [CollisionVisualizer](CollisionVisualizer.md) under `root` and
   installs it as this traverser's recorder in one call; `hide_collisions()`
-  tears it back down. `set_recorder()` lets you install a custom
+  tears it back down. `set_recorder()` allows installing a custom
   [CollisionRecorder](CollisionRecorder.md) subclass instead.
-- **No default handler is auto-assigned** — every collider you add must
+- **No default handler is auto-assigned** — every collider added must
   come with an explicit `CollisionHandler*`. (`_default_handler` exists
   internally but is only used as a fallback in specific internal code paths,
   not something application code relies on.)

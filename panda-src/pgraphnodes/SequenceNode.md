@@ -5,14 +5,14 @@
 
 Automatically cycles through rendering exactly one child at a time, one
 child per "frame" of an animation clock — the scene-graph equivalent of a
-flipbook. Each child is one frame; `get_num_frames()` is simply
-`get_num_children()`. All frame-rate/looping/play-range control comes from
+flipbook. Each child is one frame; `get_num_frames()` returns
+`get_num_children()` directly. All frame-rate/looping/play-range control comes from
 the inherited `AnimInterface` (`chan` module, undocumented here — think
 `play()`/`loop()`/`pose()`/`set_frame_rate()`-style controls).
 
 ## Behavior notes
 
-- **The currently-visible child is just `get_frame()`** (from
+- **The currently-visible child is determined solely by `get_frame()`** (from
   `AnimInterface`) — `cull_callback()` calls `select_child(get_frame())`
   each traversal, so the visible child tracks the animation clock
   automatically; there's no separate index state to keep in sync (unlike
