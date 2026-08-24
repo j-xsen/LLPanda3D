@@ -67,7 +67,7 @@ snippet, and links to related classes.
 | putil | `panda/src/putil` | Done (2026-08-23) — see [panda-src/putil/README.md](panda-src/putil/README.md) |
 | linmath | `panda/src/linmath` | Done (2026-08-24) — see [panda-src/linmath/README.md](panda-src/linmath/README.md) |
 | mathutil | `panda/src/mathutil` | Done (2026-08-24) — see [panda-src/mathutil/README.md](panda-src/mathutil/README.md) |
-| dgraph | `panda/src/dgraph` | Not started |
+| dgraph | `panda/src/dgraph` | Done (2026-08-24) — see [panda-src/dgraph/README.md](panda-src/dgraph/README.md) |
 | tform | `panda/src/tform` | Not started |
 | cull | `panda/src/cull` | Not started |
 | pipeline | `panda/src/pipeline` | Not started |
