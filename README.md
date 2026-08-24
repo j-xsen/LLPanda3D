@@ -62,5 +62,7 @@ snippet, and links to related classes.
 | pgraphnodes | `panda/src/pgraphnodes` | Done (2026-08-23) — see [panda-src/pgraphnodes/README.md](panda-src/pgraphnodes/README.md) |
 | audio | `panda/src/audio` | Done (2026-08-23) — see [panda-src/audio/README.md](panda-src/audio/README.md) |
 | collide | `panda/src/collide` | Done (2026-08-23) — see [panda-src/collide/README.md](panda-src/collide/README.md) |
+| chan | `panda/src/chan` | Done (2026-08-23) — see [panda-src/chan/README.md](panda-src/chan/README.md) |
+| char | `panda/src/char` | Done (2026-08-23) — see [panda-src/char/README.md](panda-src/char/README.md) |
 
 Everything else under `panda/src/` is not yet documented.
