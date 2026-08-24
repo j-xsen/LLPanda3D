@@ -65,8 +65,8 @@ snippet, and links to related classes.
 | chan | `panda/src/chan` | Done (2026-08-23) — see [panda-src/chan/README.md](panda-src/chan/README.md) |
 | char | `panda/src/char` | Done (2026-08-23) — see [panda-src/char/README.md](panda-src/char/README.md) |
 | putil | `panda/src/putil` | Done (2026-08-23) — see [panda-src/putil/README.md](panda-src/putil/README.md) |
-| linmath | `panda/src/linmath` | Not started |
-| mathutil | `panda/src/mathutil` | Not started |
+| linmath | `panda/src/linmath` | Done (2026-08-24) — see [panda-src/linmath/README.md](panda-src/linmath/README.md) |
+| mathutil | `panda/src/mathutil` | Done (2026-08-24) — see [panda-src/mathutil/README.md](panda-src/mathutil/README.md) |
 | dgraph | `panda/src/dgraph` | Not started |
 | tform | `panda/src/tform` | Not started |
 | cull | `panda/src/cull` | Not started |
