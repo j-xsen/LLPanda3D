@@ -70,7 +70,7 @@ snippet, and links to related classes.
 | dgraph | `panda/src/dgraph` | Done (2026-08-24) — see [panda-src/dgraph/README.md](panda-src/dgraph/README.md) |
 | tform | `panda/src/tform` | Done (2026-08-24) — see [panda-src/tform/README.md](panda-src/tform/README.md) |
 | cull | `panda/src/cull` | Done (2026-08-25) — see [panda-src/cull/README.md](panda-src/cull/README.md) |
-| pipeline | `panda/src/pipeline` | Not started |
+| pipeline | `panda/src/pipeline` | Done (2026-08-25) — see [panda-src/pipeline/README.md](panda-src/pipeline/README.md) |
 | pstatclient | `panda/src/pstatclient` | Not started |
 | express | `panda/src/express` | Not started |
 | downloader | `panda/src/downloader` | Not started |
