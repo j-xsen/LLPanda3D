@@ -96,3 +96,4 @@ NodePath mouse = data_root.attach_new_node(mak);
 - [GraphicsWindowInputDevice.md](GraphicsWindowInputDevice.md) — the actual device this node reads from via `GraphicsWindow::get_input_device()`.
 - [GraphicsWindow.md](GraphicsWindow.md) — owns the input device list and current `WindowProperties`/size this node queries every frame.
 - [../framework/PandaFramework.md](../framework/PandaFramework.md), [../framework/README.md](../framework/README.md) — `PandaFramework::get_mouse()` is the framework-level factory for one `MouseAndKeyboard` per window; `WindowFramework::get_mouse()`/`enable_keyboard()` build the `MouseWatcher`/`ButtonThrower` chain downstream of it.
+- [../tform/README.md](../tform/README.md) — the `MouseWatcher`, `Trackball`, `DriveInterface`, `ButtonThrower`, etc. classes that consume this node's `xy`/`pixel_xy`/`button_events` outputs.

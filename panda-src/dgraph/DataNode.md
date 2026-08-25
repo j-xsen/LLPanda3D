@@ -2,7 +2,7 @@
 
 **Source:** `panda/src/dgraph/dataNode.h` / `.I` / `.cxx`
 **Inherits:** `PandaNode`
-**Inherited by:** device/transform classes in [tform](../tform/README.md) (not yet documented) — `MouseWatcher`, `DriveInterface`, `Trackball`, `ButtonThrower`, etc.
+**Inherited by:** device/transform classes in [tform](../tform/README.md) — `MouseWatcher`, `DriveInterface`, `Trackball`, `ButtonThrower`, etc.
 
 `DataNode` is the abstract base for every node in the [data graph](README.md).
 By itself it defines no inputs or outputs — subclasses call `define_input()`/

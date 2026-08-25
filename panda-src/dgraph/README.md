@@ -6,9 +6,9 @@ The data graph is a second, parallel node hierarchy — built from the same
 `PandaNode`/`NodePath` machinery as the 3-D scene graph, but used to wire up
 input devices (mice, trackballs, joysticks) to the objects that consume their
 data (a `Trackball` computing a matrix, a node that applies that matrix to
-the scene graph) each frame. See [tform](../tform/README.md) (not yet
-documented) for the concrete device/consumer classes; this module is just the
-plumbing: the node type and the traversal that drives it.
+the scene graph) each frame. See [tform](../tform/README.md) for the
+concrete device/consumer classes; this module is just the plumbing: the node
+type and the traversal that drives it.
 
 This directory documents the public C++ API of every class in
 `panda/src/dgraph`.
@@ -78,7 +78,6 @@ scene graph.
 
 ## See also
 
-[tform](../tform/README.md) (not yet documented) — the concrete device and
-transform classes (`MouseWatcher`, `DriveInterface`, `Trackball`,
-`ButtonThrower`, ...) that subclass `DataNode` and give the data graph its
-actual content.
+[tform](../tform/README.md) — the concrete device and transform classes
+(`MouseWatcher`, `DriveInterface`, `Trackball`, `ButtonThrower`, ...) that
+subclass `DataNode` and give the data graph its actual content.
