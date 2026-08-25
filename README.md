@@ -69,7 +69,7 @@ snippet, and links to related classes.
 | mathutil | `panda/src/mathutil` | Done (2026-08-24) — see [panda-src/mathutil/README.md](panda-src/mathutil/README.md) |
 | dgraph | `panda/src/dgraph` | Done (2026-08-24) — see [panda-src/dgraph/README.md](panda-src/dgraph/README.md) |
 | tform | `panda/src/tform` | Done (2026-08-24) — see [panda-src/tform/README.md](panda-src/tform/README.md) |
-| cull | `panda/src/cull` | Not started |
+| cull | `panda/src/cull` | Done (2026-08-25) — see [panda-src/cull/README.md](panda-src/cull/README.md) |
 | pipeline | `panda/src/pipeline` | Not started |
 | pstatclient | `panda/src/pstatclient` | Not started |
 | express | `panda/src/express` | Not started |
