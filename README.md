@@ -95,7 +95,7 @@ snippet, and links to related classes.
 | physx | `panda/src/physx` | Not started |
 | speedtree | `panda/src/speedtree` | Not started |
 | rocket | `panda/src/rocket` | Not started |
-| pnmimage | `panda/src/pnmimage` | Not started |
+| pnmimage | `panda/src/pnmimage` | Done (2026-08-28) — see [panda-src/pnmimage/README.md](panda-src/pnmimage/README.md) |
 | pnmimagetypes | `panda/src/pnmimagetypes` | Not started |
 | pnmtext | `panda/src/pnmtext` | Not started |
 | gsgbase | `panda/src/gsgbase` | Not started |
